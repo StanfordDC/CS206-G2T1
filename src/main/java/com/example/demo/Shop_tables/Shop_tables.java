@@ -2,6 +2,7 @@ package com.example.demo.Shop_tables;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
+import com.example.demo.Business.Business;
 
 @Entity
 @Getter
@@ -11,5 +12,15 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class Shop_tables {
-    private @Id @GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
+    private @Id @Column(name = "tid")@GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "bid")
+    private Business business;
+
+    @Column(name = "type")
+    private int type;
+
+    @Column(name = "availability")
+    private boolean availability;
 }

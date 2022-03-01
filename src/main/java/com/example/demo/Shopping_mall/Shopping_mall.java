@@ -11,5 +11,9 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class Shopping_mall {
-    private @Id @GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
+    private @Id @Column(name = "sid") @GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
+
+    @NotNull(message = "Mall name should not be null") 
+    private String name;
+
 }
