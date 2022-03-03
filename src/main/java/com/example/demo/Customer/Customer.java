@@ -4,7 +4,7 @@ import javax.validation.constraints.*;
 import lombok.*;
 import com.example.demo.Order.Order;
 import java.time.LocalDate;
-
+import java.util.List;
 @Entity
 @Getter
 @Setter
@@ -29,7 +29,7 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer",
     cascade = CascadeType.ALL)
-    private Order orders;
+    private List<Order> orders;
 
     @Column(name = "card_no")
     @Digits(integer = 16, fraction=0,message = "Card must be 16 digits")

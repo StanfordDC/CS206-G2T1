@@ -30,7 +30,7 @@ public class Food {
     private Menu menu;
 
     
-    @OneToMany(mappedBy = "menu",
+    @OneToMany(mappedBy = "food",
                     cascade = CascadeType.ALL)
     private List<Order_food> order_foods;
 }

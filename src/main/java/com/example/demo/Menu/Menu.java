@@ -27,6 +27,6 @@ public class Menu {
 
     @OneToMany(mappedBy = "menu",
                     cascade = CascadeType.ALL)
-                    private List<Food> foods;
+    private List<Food> foods;
 
 }

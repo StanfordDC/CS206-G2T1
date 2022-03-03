@@ -2,7 +2,7 @@ package com.example.demo.Business;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
-
+import java.util.List;
 import com.example.demo.Menu.Menu;
 import com.example.demo.Order.Order;
 import com.example.demo.mall.Mall;
@@ -14,6 +14,7 @@ import com.example.demo.waiting_time_history.Waiting_time_history;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
+@Table(name = "business", schema = "cs206")
 public class Business {
     private  @Id@Column(name = "bid") @GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
 
@@ -43,10 +44,10 @@ public class Business {
 
     @OneToMany(mappedBy = "business",
     cascade = CascadeType.ALL)
-    private Order orders;
+    private List<Order> orders;
 
     @ManyToOne
-    @JoinColumn(name = "mid")
+    @JoinColumn(name = "sid")
     private Mall mall;
     
     @OneToOne(mappedBy = "business",

@@ -13,6 +13,8 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class Order_food {
+    private  @Id @GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
+
 
     @Column(name = "quantity")
     private int quantity;
