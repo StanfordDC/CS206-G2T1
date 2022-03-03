@@ -34,7 +34,8 @@ constraint menu_fk foreign key(bid) references business(bid)
 create table customers(
 cid int(11) not null primary key,
 name varchar(25) not null,
-cwaiting_time int(3) not null
+cwaiting_time int(3) not null,
+card_no int(16) 
 );
  
 create table orders(

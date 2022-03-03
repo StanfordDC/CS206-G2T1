@@ -20,7 +20,20 @@ public class Business {
 
     @NotNull(message = "waiting time should not be null")
     @Column(name = "bwaiting_time")
-    private int waiting_time;
+    private String waiting_time; // can chage to datetime varaible 
+
+    @Column(name = "uen")
+    private String UEN;
+
+    @Digits(integer = 8, fraction=0,message = "phone number must be 8 digits")
+    @Column(name = "phone_no")
+    private int phone_no;
+
+    @Column(name = "website")
+    private String website;
+
+    @Column(name = "password")
+    private String password;
 
     @OneToOne(mappedBy = "business",
     cascade = CascadeType.ALL)
