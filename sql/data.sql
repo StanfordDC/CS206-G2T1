@@ -60,6 +60,8 @@ total_price decimal(8,2) not null,
 odate datetime not null,
 cwaiting_time int not null,
 pax int not null,
+order_status int,
+refund_status int,
 constraint orders_pk primary key(oid),
 constraint orders_fk1 foreign key(bid) references business(bid),
 constraint orders_fk2 foreign key(cid) references customers(cid)
