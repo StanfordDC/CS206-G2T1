@@ -1,8 +1,9 @@
-package com.example.demo.Shopping_mall;
+package com.example.demo.mall;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
-
+import com.example.demo.Business.Business;
+import java.util.List;
 @Entity
 @Getter
 @Setter
@@ -10,10 +11,15 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class Shopping_mall {
+@Table(name = "mall", schema = "cs206")
+public class mall {
     private @Id @Column(name = "sid") @GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
 
     @NotNull(message = "Mall name should not be null") 
     private String name;
+
+    @OneToMany(mappedBy = "mall",
+                    cascade = CascadeType.ALL)
+    private List<Business> businesses;
 
 }
