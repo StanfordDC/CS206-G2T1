@@ -5,7 +5,6 @@ import javax.validation.constraints.*;
 import com.example.demo.Business.Business;
 import java.util.List;
 import lombok.*;
-
 @Entity
 @Getter
 @Setter
@@ -23,10 +22,13 @@ public class Menu {
     @NotNull(message = "Menu name should not be null")  // I think that menu do not need a name 
     private String name;
 
+    @Column(name = "price")
     private float price;
 
     @OneToMany(mappedBy = "menu",
                     cascade = CascadeType.ALL)
     private List<Food> foods;
+
+    
 
 }

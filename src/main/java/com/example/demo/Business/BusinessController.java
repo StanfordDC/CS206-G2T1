@@ -26,6 +26,8 @@ public class BusinessController {
 
     @GetMapping("/business")
     public List<Business> getBusinesses() {
-        return businesses.getById();
+        // return businesses.findAll();
+        Long l= Long.valueOf(10007);;
+        return businesses.findByMallId(l);
     }
 }

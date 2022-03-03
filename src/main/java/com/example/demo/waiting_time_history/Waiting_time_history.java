@@ -18,7 +18,7 @@ public class Waiting_time_history {
     @Column(name = "type")
     private int type;
 
-    @Column(name = "waitng_time")
+    @Column(name = "waiting_time")
     private int waiting_time;
 
     @Column(name = "pax")
