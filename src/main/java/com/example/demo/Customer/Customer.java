@@ -39,8 +39,10 @@ public class Customer {
     private String card_name;
 
     @Column(name = "expiry_date")
-    private LocalDate expirary_date; // can change to LocalDate
+    private LocalDate expirary_date; 
 
+    @Column(name = "security_code")
+    private LocalDate security_code; 
 
 
 }

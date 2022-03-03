@@ -4,7 +4,7 @@ import javax.validation.constraints.*;
 
 import com.example.demo.Business.Business;
 import com.example.demo.Customer.Customer;
-
+import java.util.List;
 import lombok.*;
 import java.time.LocalDate;
 
@@ -43,5 +43,9 @@ public class Order {
 
     @Column(name = "pax")
     private int pax;
-    
+
+
+    @OneToMany(mappedBy = "menu",
+                    cascade = CascadeType.ALL)
+                    private List<Order_food> order_foods;    
 }

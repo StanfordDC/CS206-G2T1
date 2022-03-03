@@ -3,7 +3,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import com.example.demo.Business.Business;
-
+import java.util.List;
 import lombok.*;
 
 @Entity
@@ -25,6 +25,8 @@ public class Menu {
 
     private float price;
 
-
+    @OneToMany(mappedBy = "menu",
+                    cascade = CascadeType.ALL)
+                    private List<Food> foods;
 
 }

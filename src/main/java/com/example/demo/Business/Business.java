@@ -6,6 +6,7 @@ import lombok.*;
 import com.example.demo.Menu.Menu;
 import com.example.demo.Order.Order;
 import com.example.demo.mall.Mall;
+import com.example.demo.waiting_time_history.Waiting_time_history;
 @Entity
 @Getter
 @Setter
@@ -48,5 +49,7 @@ public class Business {
     @JoinColumn(name = "mid")
     private Mall mall;
     
-
+    @OneToOne(mappedBy = "business",
+                    cascade = CascadeType.ALL)
+    private Waiting_time_history waiting_time_history;
 }
