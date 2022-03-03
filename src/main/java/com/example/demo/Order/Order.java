@@ -45,6 +45,12 @@ public class Order {
     private int pax;
 
 
+    @Column(name = "order_status")
+    private int order_status;
+
+    @Column(name = "refund_status")
+    private int refund_status;
+
     @OneToMany(mappedBy = "menu",
                     cascade = CascadeType.ALL)
                     private List<Order_food> order_foods;    
