@@ -25,4 +25,8 @@ public class Customer {
     cascade = CascadeType.ALL)
     private Order orders;
 
+    @Column(name = "card_no")
+    @Digits(integer = 16, fraction=0,message = "Card must be 16 digits")
+    private int card_no;
+
 }
