@@ -19,6 +19,10 @@ import java.time.LocalDate;
 public class Order {
     private  @Id @Column(name = "oid") @GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
 
+    @NotNull(message = "waiting time should not be null")
+    @Column(name = "cwaiting_time")
+    private int waiting_time;
+
     @ManyToOne
     @JoinColumn(name = "bid")
     private Business business;
@@ -37,5 +41,7 @@ public class Order {
     @Column(name="odate")
     private LocalDate date; 
 
+    @Column(name = "pax")
+    private int pax;
     
 }

@@ -47,7 +47,7 @@ cwaiting_time int(3) not null,
 card_no int(16),
 card_name varchar(20),
 expiry_date varchar(10),
-security_code int(4)e
+security_code int(4)
 
 );
  

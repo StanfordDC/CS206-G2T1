@@ -2,9 +2,10 @@ package com.example.demo.Business;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
+
 import com.example.demo.Menu.Menu;
 import com.example.demo.Order.Order;
-
+import com.example.demo.mall.Mall;
 @Entity
 @Getter
 @Setter
@@ -43,7 +44,9 @@ public class Business {
     cascade = CascadeType.ALL)
     private Order orders;
 
-    
+    @ManyToOne
+    @JoinColumn(name = "mid")
+    private Mall mall;
     
 
 }
