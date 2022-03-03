@@ -1,4 +1,4 @@
-package com.example.demo.Shop_tables;
+package com.example.demo.Table;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
@@ -11,7 +11,7 @@ import com.example.demo.Business.Business;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class Shop_tables {
+public class Table {
     private @Id @Column(name = "tid")@GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
 
     @ManyToOne

@@ -1,4 +1,4 @@
-package com.example.demo.Shopping_mall;
+package com.example.demo.Mall;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class Shopping_mall {
+public class Mall {
     private @Id @Column(name = "sid") @GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
 
     @NotNull(message = "Mall name should not be null") 
