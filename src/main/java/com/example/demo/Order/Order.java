@@ -51,7 +51,7 @@ public class Order {
     @Column(name = "refund_status")
     private int refund_status;
 
-    @OneToMany(mappedBy = "menu",
+    @OneToMany(mappedBy = "order",
                     cascade = CascadeType.ALL)
-                    private List<Order_food> order_foods;    
+    private List<Order_food> order_foods;    
 }
