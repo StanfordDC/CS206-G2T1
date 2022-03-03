@@ -33,6 +33,7 @@ constraint business_fk foreign key(sid) references mall(sid)
 mid int not null,
 bid int not null,
 name varchar(25) not null,
+price int,
 constraint menu_pk primary key(mid),
 constraint menu_fk foreign key(bid) references business(bid)
  );
@@ -96,9 +97,18 @@ constraint order_food_fk2 foreign key(oid) references orders(oid)
 
 );
 
-select * from orders;
- 
- 
+
+
+select * from business;
+
+insert into mall values
+(10007,'jgjjg');
+
+insert into business values
+(1001,10007,'hgh',33,'333rr',64664464,'hghggh','ngjjjg77');
+
+
+
  
  
 
