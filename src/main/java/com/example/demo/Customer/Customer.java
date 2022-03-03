@@ -3,6 +3,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
 import com.example.demo.Order.Order;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -17,9 +18,14 @@ public class Customer {
     @NotNull(message = "Business name should not be null")
     private String name;
 
-    @NotNull(message = "waiting time should not be null")
-    @Column(name = "cwaiting_time")
-    private int waiting_time;
+    @Column(name = "email")
+    private int email;
+
+    @Column(name = "phone_no")
+    private int phone_no;
+
+    @Column(name = "password")
+    private String password;
 
     @OneToMany(mappedBy = "customer",
     cascade = CascadeType.ALL)
@@ -28,5 +34,13 @@ public class Customer {
     @Column(name = "card_no")
     @Digits(integer = 16, fraction=0,message = "Card must be 16 digits")
     private int card_no;
+
+    @Column(name = "card_name")
+    private String card_name;
+
+    @Column(name = "expiry_date")
+    private LocalDate expirary_date; // can change to LocalDate
+
+
 
 }
