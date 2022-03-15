@@ -19,10 +19,6 @@ import java.time.LocalDate;
 public class Order {
     private  @Id @Column(name = "oid") @GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
 
-    @NotNull(message = "waiting time should not be null")
-    @Column(name = "cwaiting_time")
-    private int waiting_time;
-
     @ManyToOne
     @JoinColumn(name = "bid")
     private Business business;
@@ -31,15 +27,16 @@ public class Order {
     @JoinColumn(name = "cid")
     private Customer customer;
 
-    @NotNull(message = "Order name should not be null")  // I think that order do not need a name 
-    private String name;
-
     @Column(name = "total_price")
     private float price;
 
     @NotNull(message = "date cannot be null")
     @Column(name="odate")
     private LocalDate date; 
+
+    @NotNull(message = "waiting time should not be null")
+    @Column(name = "cwaiting_time")
+    private int waiting_time;
 
     @Column(name = "pax")
     private int pax;

@@ -47,7 +47,6 @@ public class Business {
     cascade = CascadeType.ALL)
     private List<Order> orders;
 
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "sid")
     private mall mall;
