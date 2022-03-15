@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
+@Table(name = "customers", schema = "cs206")
 public class Customer {
     private  @Id @Column(name = "cid")@GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
 

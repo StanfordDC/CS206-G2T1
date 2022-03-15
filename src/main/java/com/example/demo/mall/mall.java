@@ -1,9 +1,11 @@
-package com.example.demo.mall;
+package com.example.demo.Mall;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
 import com.example.demo.Business.Business;
- import java.util.List;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -13,12 +15,13 @@ import com.example.demo.Business.Business;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Table(name = "mall", schema = "cs206")
-public class Mall {
+public class mall {
     private @Id @Column(name = "sid") @GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
 
     @NotNull(message = "Mall name should not be null") 
     private String name;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "mall",
             cascade = CascadeType.ALL)
     private List<Business> businesses;
