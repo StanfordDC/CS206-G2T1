@@ -1,7 +1,14 @@
 package com.example.demo.Business;
-import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.List;
 
-public interface BusinessRepository extends JpaRepository<Business, Long>{
-    List<Business> findByBusinessID(Long Id);
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+import java.util.UUID;
+
+@Repository
+public interface BusinessRepository extends JpaRepository<Business, UUID>{
+    Optional<Business> findByUEN(String UEN);
+
+    Boolean existsByUEN(String UEN);
 }
