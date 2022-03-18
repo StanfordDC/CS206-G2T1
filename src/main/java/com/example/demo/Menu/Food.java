@@ -16,6 +16,10 @@ import lombok.*;
 public class Food {
     private  @Id @Column(name = "fid")@GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "mid")
+    private Menu menu;
+
     @NotNull(message = "Food name should not be null") 
     private String name;
 
@@ -24,11 +28,6 @@ public class Food {
 
     @Column(name = "availability")
     private boolean availability;
-
-    @ManyToOne
-    @JoinColumn(name = "mid")
-    private Menu menu;
-
     
     @OneToMany(mappedBy = "food",
                     cascade = CascadeType.ALL)
