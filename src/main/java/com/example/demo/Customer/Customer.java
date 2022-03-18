@@ -20,7 +20,7 @@ public class Customer {
     private String name;
 
     @Column(name = "email")
-    private int email;
+    private String email;
 
     @Column(name = "phone_no")
     private int phone_no;
@@ -33,17 +33,12 @@ public class Customer {
     private List<Order> orders;
 
     @Column(name = "card_no")
-    @Digits(integer = 16, fraction=0,message = "Card must be 16 digits")
-    private int card_no;
+    private String card_no;
 
     @Column(name = "card_name")
     private String card_name;
 
     @Column(name = "expiry_date")
-    private LocalDate expirary_date; 
-
-    @Column(name = "security_code")
-    private LocalDate security_code; 
-
+    private LocalDate expiry_date; 
 
 }

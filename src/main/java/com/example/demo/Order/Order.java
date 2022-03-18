@@ -41,7 +41,6 @@ public class Order {
     @Column(name = "pax")
     private int pax;
 
-
     @Column(name = "order_status")
     private int order_status;
 
