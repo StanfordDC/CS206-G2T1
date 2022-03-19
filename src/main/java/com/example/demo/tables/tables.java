@@ -3,6 +3,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
 import com.example.demo.Business.Business;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Getter
@@ -15,6 +16,7 @@ import com.example.demo.Business.Business;
 public class tables {
     private @Id @Column(name = "tid")@GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "bid")
     private Business business;

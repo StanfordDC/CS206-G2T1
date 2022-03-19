@@ -3,6 +3,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.List;
 import com.example.demo.Order.Order_food;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.*;
 
@@ -16,6 +17,7 @@ import lombok.*;
 public class Food {
     private  @Id @Column(name = "fid")@GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "mid")
     private Menu menu;

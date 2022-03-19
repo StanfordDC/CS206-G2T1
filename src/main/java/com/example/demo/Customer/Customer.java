@@ -27,7 +27,7 @@ public class Customer {
 
     @Column(name = "password")
     private String password;
-
+    
     @OneToMany(mappedBy = "customer",
     cascade = CascadeType.ALL)
     private List<Order> orders;

@@ -2,6 +2,7 @@ package com.example.demo.Order;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import com.example.demo.Menu.Food;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.*;
 
@@ -19,10 +20,12 @@ public class Order_food {
     @Column(name = "quantity")
     private int quantity;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "fid")
     private Food food;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "oid")
     private Order order;
