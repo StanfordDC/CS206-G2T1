@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BusinessRepository extends JpaRepository<Business, Long>{
-    List<Business> findByMallId(Long sid);
+    List<Business> findByMallSid(Long sid);
     
 }

@@ -4,6 +4,7 @@ import javax.validation.constraints.*;
 import lombok.*;
 import com.example.demo.Business.Business;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Getter
@@ -14,9 +15,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @EqualsAndHashCode
 @Table(name = "shop_tables", schema = "cs206")
 public class tables {
-    private @Id @Column(name = "tid")@GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
+    private @Id @Column(name = "tid")@GeneratedValue (strategy = GenerationType.IDENTITY) Long tid;
 
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "bid")
     private Business business;
