@@ -21,7 +21,6 @@ public class mall {
     @NotNull(message = "Mall name should not be null") 
     private String name;
 
-    @JsonBackReference
     @OneToMany(mappedBy = "mall",
             cascade = CascadeType.ALL)
     private List<Business> businesses;

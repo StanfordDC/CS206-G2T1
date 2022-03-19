@@ -4,9 +4,15 @@ import javax.validation.constraints.*;
 
 import com.example.demo.Business.Business;
 import com.example.demo.Customer.Customer;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 import lombok.*;
+
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -19,10 +25,12 @@ import java.time.LocalDate;
 public class Order {
     private  @Id @Column(name = "oid") @GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "bid")
     private Business business;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "cid")
     private Customer customer;
@@ -30,13 +38,12 @@ public class Order {
     @Column(name = "total_price")
     private float price;
 
-    @NotNull(message = "date cannot be null")
     @Column(name="odate")
-    private LocalDate date; 
+    private LocalDateTime date; 
 
     @NotNull(message = "waiting time should not be null")
     @Column(name = "cwaiting_time")
-    private int waiting_time;
+    private String waiting_time;
 
     @Column(name = "pax")
     private int pax;
@@ -49,5 +56,5 @@ public class Order {
 
     @OneToMany(mappedBy = "order",
                     cascade = CascadeType.ALL)
-    private List<Order_food> order_foods;    
+    private List<Order_food> order_foods;
 }

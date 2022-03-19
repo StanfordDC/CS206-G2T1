@@ -7,6 +7,7 @@ import com.example.demo.Menu.Menu;
 import com.example.demo.Order.Order;
 import com.example.demo.Mall.mall;
 import com.example.demo.waiting_time_history.Waiting_time_history;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Getter
@@ -47,6 +48,7 @@ public class Business {
     cascade = CascadeType.ALL)
     private List<Order> orders;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "sid")
     private mall mall;
