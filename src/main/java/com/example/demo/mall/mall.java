@@ -1,9 +1,11 @@
 package com.example.demo.Mall;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
 import com.example.demo.Business.Business;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.List;
 
@@ -16,14 +18,13 @@ import java.util.List;
 @EqualsAndHashCode
 @Table(name = "mall", schema = "cs206")
 public class mall {
-    private @Id @Column(name = "sid") @GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
+    private @Id @Column(name = "sid") @GeneratedValue(strategy = GenerationType.IDENTITY) Long sid;
 
-    @NotNull(message = "Mall name should not be null") 
+    @NotNull(message = "Mall name should not be null")
     private String name;
 
-    @OneToMany(mappedBy = "mall",
-            cascade = CascadeType.ALL)
+    @JsonBackReference
+    @OneToMany(mappedBy = "mall", cascade = CascadeType.ALL)
     private List<Business> businesses;
-
 
 }

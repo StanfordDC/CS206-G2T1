@@ -1,10 +1,15 @@
 package com.example.demo.Customer;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
 import com.example.demo.Order.Order;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.time.LocalDate;
 import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -14,7 +19,7 @@ import java.util.List;
 @EqualsAndHashCode
 @Table(name = "customers", schema = "cs206")
 public class Customer {
-    private  @Id @Column(name = "cid")@GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
+    private @Id @Column(name = "cid") @GeneratedValue(strategy = GenerationType.IDENTITY) Long cid;
 
     @NotNull(message = "Business name should not be null")
     private String name;
@@ -27,9 +32,9 @@ public class Customer {
 
     @Column(name = "password")
     private String password;
-    
-    @OneToMany(mappedBy = "customer",
-    cascade = CascadeType.ALL)
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Order> orders;
 
     @Column(name = "card_no")
@@ -39,6 +44,6 @@ public class Customer {
     private String card_name;
 
     @Column(name = "expiry_date")
-    private LocalDate expiry_date; 
+    private LocalDate expiry_date;
 
 }

@@ -13,13 +13,13 @@ import com.example.demo.Business.Business;
 @EqualsAndHashCode
 @Table(name = "waiting_time_history", schema = "cs206")
 public class Waiting_time_history {
-    private  @Id @Column(name = "wid") @GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
+    private  @Id @Column(name = "wid") @GeneratedValue (strategy = GenerationType.IDENTITY) Long wid;
 
     @Column(name = "type")
     private int type;
 
     @Column(name = "waiting_time")
-    private int waiting_time;
+    private String waiting_time;
 
     @Column(name = "pax")
     private int pax;

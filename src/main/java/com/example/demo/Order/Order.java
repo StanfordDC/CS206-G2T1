@@ -6,6 +6,7 @@ import com.example.demo.Business.Business;
 import com.example.demo.Customer.Customer;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.List;
 import lombok.*;
@@ -23,14 +24,12 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @Table(name = "orders", schema = "cs206")
 public class Order {
-    private  @Id @Column(name = "oid") @GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
+    private  @Id @Column(name = "oid") @GeneratedValue (strategy = GenerationType.IDENTITY) Long oid;
 
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "bid")
     private Business business;
 
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "cid")
     private Customer customer;
@@ -54,6 +53,7 @@ public class Order {
     @Column(name = "refund_status")
     private int refund_status;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "order",
                     cascade = CascadeType.ALL)
     private List<Order_food> order_foods;

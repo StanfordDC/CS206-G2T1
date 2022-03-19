@@ -28,6 +28,6 @@ public class BusinessController {
     public List<Business> getBusinesses() {
         // return businesses.findAll();
         Long l= Long.valueOf(103);
-        return businesses.findByMallId(l);
+        return businesses.findByMallSid(l);
     }
 }

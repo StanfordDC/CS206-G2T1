@@ -13,7 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class Menu {
-    private  @Id @Column(name = "mid")@GeneratedValue (strategy = GenerationType.IDENTITY) Long id;
+    private  @Id @Column(name = "mid")@GeneratedValue (strategy = GenerationType.IDENTITY) Long mid;
 
     @OneToOne
     @JoinColumn(name="bid")
