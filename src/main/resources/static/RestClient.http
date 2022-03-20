@@ -5,3 +5,25 @@
 
 GET http://localhost:8081/businesses
 Accept: application/json
+
+###
+GET http://localhost:8081/get_all_order
+
+###
+POST http://localhost:8081/create_order
+Content-Type: application/json
+
+{
+    "bid": "1",
+    "cid": "1",
+    "price": "10",
+    "date": "2016-01-25T21:34:55",
+    "waiting_time": "30",
+    "pax": 5,
+    "order_Status":1,
+    "payment_status": 1
+    
+}
+
+
+
