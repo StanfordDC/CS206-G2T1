@@ -17,9 +17,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class tables {
     private @Id @Column(name = "tid")@GeneratedValue (strategy = GenerationType.IDENTITY) Long tid;
 
-    @ManyToOne
-    @JoinColumn(name = "bid")
-    private Business business;
+    @Column(name = "bid")
+    private Long bid;
 
     @Column(name = "type")
     private int type;

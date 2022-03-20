@@ -26,13 +26,11 @@ import java.time.LocalDateTime;
 public class Order {
     private  @Id @Column(name = "oid") @GeneratedValue (strategy = GenerationType.IDENTITY) Long oid;
 
-    @ManyToOne
-    @JoinColumn(name = "bid")
-    private Business business;
+    @Column(name = "bid")
+    private Long bid;
 
-    @ManyToOne
-    @JoinColumn(name = "cid")
-    private Customer customer;
+    @Column(name = "cid")
+    private Long cid;
 
     @Column(name = "total_price")
     private float price;
@@ -50,11 +48,6 @@ public class Order {
     @Column(name = "order_status")
     private int order_status;
 
-    @Column(name = "refund_status")
-    private int refund_status;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "order",
-                    cascade = CascadeType.ALL)
-    private List<Order_food> order_foods;
+    @Column(name = "payment_status")
+    private int payment_status;
 }
