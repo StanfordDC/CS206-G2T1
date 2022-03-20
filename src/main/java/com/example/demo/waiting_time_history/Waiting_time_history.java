@@ -24,10 +24,8 @@ public class Waiting_time_history {
     @Column(name = "pax")
     private int pax;
 
-
-    @OneToOne
-    @JoinColumn(name = "bid")
-    private Business business;
+    @Column(name = "bid")
+    private Long bid;
     
 
 }

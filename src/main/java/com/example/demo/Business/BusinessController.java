@@ -17,17 +17,17 @@ import com.example.demo.Business.*;
 @CrossOrigin
 public class BusinessController {
     
-    private BusinessRepository businesses;
+    private BusinessRepository businessRepository;
 
     @Autowired
-    public BusinessController(BusinessRepository businesses){
-        this.businesses = businesses;
+    public BusinessController(BusinessRepository businessRepository){
+        this.businessRepository = businessRepository;
     }
 
     @GetMapping("/business")
     public List<Business> getBusinesses() {
         // return businesses.findAll();
         Long l= Long.valueOf(103);
-        return businesses.findByMallSid(l);
+        return businessRepository.listBusinessbysid(l);
     }
 }

@@ -14,20 +14,13 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
+@Table(name = "order_food", schema = "cs206")
 public class Order_food {
     private  @Id @GeneratedValue (strategy = GenerationType.IDENTITY) Long ofid;
 
     @Column(name = "quantity")
     private int quantity;
 
-    @ManyToOne
-    @JoinColumn(name = "fid")
-    private Food food;
-
-    @ManyToOne
-    @JoinColumn(name = "oid")
-    private Order order;
-
-
-
+    @Column(name = "fid")
+    private Long fid;
 }

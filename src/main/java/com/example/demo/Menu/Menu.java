@@ -12,23 +12,13 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
+@Table(name = "menu", schema = "cs206")
 public class Menu {
     private  @Id @Column(name = "mid")@GeneratedValue (strategy = GenerationType.IDENTITY) Long mid;
 
-    @OneToOne
-    @JoinColumn(name="bid")
-    private Business business;
-
-    @NotNull(message = "Menu name should not be null")  // I think that menu do not need a name 
-    private String name;
+    @Column(name="bid")
+    private Long bid;
 
     @Column(name = "price")
     private float price;
-
-    @OneToMany(mappedBy = "menu",
-                    cascade = CascadeType.ALL)
-    private List<Food> foods;
-
-    
-
 }

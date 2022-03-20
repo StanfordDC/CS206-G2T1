@@ -15,12 +15,12 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
+@Table(name = "food", schema = "cs206")
 public class Food {
     private  @Id @Column(name = "fid")@GeneratedValue (strategy = GenerationType.IDENTITY) Long fid;
 
-    @ManyToOne
-    @JoinColumn(name = "mid")
-    private Menu menu;
+    @Column(name = "mid")
+    private Long mid;
 
     @NotNull(message = "Food name should not be null") 
     private String name;
@@ -30,9 +30,4 @@ public class Food {
 
     @Column(name = "availability")
     private boolean availability;
-    
-    @JsonBackReference
-    @OneToMany(mappedBy = "food",
-                    cascade = CascadeType.ALL)
-    private List<Order_food> order_foods;
 }

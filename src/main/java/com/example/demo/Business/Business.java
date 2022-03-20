@@ -42,17 +42,6 @@ public class Business {
     @Column(name = "password")
     private String password;
 
-    @OneToOne(mappedBy = "business", cascade = CascadeType.ALL)
-    private Menu menu;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "business", cascade = CascadeType.ALL)
-    private List<Order> orders;
-
-    @ManyToOne
-    @JoinColumn(name = "sid")
-    private mall mall;
-
-    @OneToOne(mappedBy = "business", cascade = CascadeType.ALL)
-    private Waiting_time_history waiting_time_history;
+    @Column(name = "sid")
+    private Long sid;
 }

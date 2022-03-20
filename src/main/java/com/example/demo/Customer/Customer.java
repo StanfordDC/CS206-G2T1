@@ -21,7 +21,7 @@ import java.util.List;
 public class Customer {
     private @Id @Column(name = "cid") @GeneratedValue(strategy = GenerationType.IDENTITY) Long cid;
 
-    @NotNull(message = "Business name should not be null")
+    @NotNull(message = "Customer name should not be null")
     private String name;
 
     @Column(name = "email")
@@ -32,10 +32,6 @@ public class Customer {
 
     @Column(name = "password")
     private String password;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Order> orders;
 
     @Column(name = "card_no")
     private String card_no;
