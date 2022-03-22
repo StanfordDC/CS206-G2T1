@@ -40,7 +40,7 @@ public class Customer implements UserDetails{
     private int phone_no;
 
     @NotNull(message = "Password should not be null")
-    @Size(min = 8, message = "Password should be at least 8 characters")
+    // @Size(min = 8, message = "Password should be at least 8 characters")
     @Column(name = "password")
     private String password;
 
@@ -93,8 +93,31 @@ public class Customer implements UserDetails{
     }
 
     @Override
-    @JsonIgnore
     public String getPassword() {
         return password;
+    }
+
+    
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Customer(String name,String email, String password, String authorities){
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.authorities = authorities;
+    }
+
+    public Customer(){
+        this.name = "new";
+        this.email = "abs@gmail.com";
+        this.password = "password";
+        this.authorities = "ROLE_ADMIN";
     }
 }

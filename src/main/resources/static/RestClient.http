@@ -5,9 +5,9 @@
 
 GET http://localhost:8081/businesses
 Accept: application/json
-
 ###
 GET http://localhost:8081/get_all_order
+Authorization: Basic abc@gmail.com goodpassword
 
 ###
 POST http://localhost:8081/create_order
@@ -24,6 +24,20 @@ Content-Type: application/json
     "payment_status": 1
     
 }
+###
+POST http://localhost:8081/create_customer
+Content-Type: application/json
 
+{
+    "name": "abc",
+    "email": "abc@gmail.com",
+    "phone_no": "12345678",
+    "password": "goodpassword",
+    "card_no": "122222222",
+    "card_name": "card",
+    "expiry_date": "2016-01-25T21:34:55",
+    "authorities": "ROLE_ADMIN"
+}
 
-
+###
+GET http://localhost:8081/get_all_customers
