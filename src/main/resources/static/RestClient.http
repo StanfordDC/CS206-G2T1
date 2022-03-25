@@ -1,0 +1,8 @@
+POST http://localhost:8080/business
+Content-Type: application/json
+# User role
+# Authorization: Basic def@gmail.com:goodpassword
+{
+    "name": "dintaifung",
+    "UEN": "ABC123"
+}
