@@ -3,11 +3,6 @@ package com.example.demo.Mall;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
-import com.example.demo.Business.Business;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import java.util.List;
 
 @Entity
 @Getter
@@ -17,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Table(name = "mall", schema = "cs206")
-public class mall {
+public class Mall {
     private @Id @Column(name = "sid") @GeneratedValue(strategy = GenerationType.IDENTITY) Long sid;
 
     @NotNull(message = "Mall name should not be null")
