@@ -1,13 +1,13 @@
 use cs206;
 
 create table business(
-bid bigint not null primary key,
+bid BIGINT not null primary key,
 uen varchar(10) not null,
 name varchar(255) not null,
 password varchar(20) not null,
 phone_no int not null,
 sid bigint not null,
-bwaiting_time varchar(7) not null,
+bwaiting_time int not null,
 website varchar(255)
 );
 
