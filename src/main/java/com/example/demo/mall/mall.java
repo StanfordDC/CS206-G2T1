@@ -1,9 +1,10 @@
-package com.example.demo.mall;
+package com.example.demo.Mall;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
+
 import com.example.demo.Business.Business;
- import java.util.List;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,8 +21,6 @@ public class Mall {
     private String name;
 
     @OneToMany(mappedBy = "mall",
-            cascade = CascadeType.ALL)
+    cascade = CascadeType.ALL)
     private List<Business> businesses;
-
-
 }
