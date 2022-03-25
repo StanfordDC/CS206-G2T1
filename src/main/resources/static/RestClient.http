@@ -5,7 +5,9 @@
 
 GET http://localhost:8081/businesses
 Accept: application/json
+
 ###
+
 GET http://localhost:8081/get_all_order
 Authorization: Basic abc@gmail.com goodpassword
 
@@ -41,3 +43,52 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8081/get_all_customers
+
+###
+
+GET http://localhost:8081/business
+Accept: application/json
+
+###
+
+GET http://localhost:8081/business/uen/tp123
+Accept: application/json
+
+###
+
+GET http://localhost:8081/business/mid/0
+Accept: application/json
+
+###
+
+POST http://localhost:8081/business
+content-type: application/json
+
+{
+    "bid": 20,
+    "UEN": "123ab7899d",
+    "name": "dintaifung", 
+    "password": "goodpassword",
+    "contact_number": "9330",
+    "mid": 0,
+    "waiting_time": 0,
+    "website": "hello",
+    "UEN": "123ab7899d"
+}
+
+###
+
+POST http://localhost:8081/business
+content-type: application/json
+
+{
+
+    "UEN": "cs206", 
+    "name": "dintaifung", 
+    "password": "goodpassword",
+    "mid": 22,
+    "waiting_time": 0
+
+}
+
+###
