@@ -42,11 +42,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .httpBasic()
             .and() //  "and()"" method allows us to continue configuring the parent
         .authorizeRequests()
-            //.antMatchers(HttpMethod.GET, "/books", "/books/**").permitAll() // Anyone can view books and reviews
-            .antMatchers(HttpMethod.POST, "/create_order").hasAnyAuthority()
-            .antMatchers(HttpMethod.GET, "/get_all_order/*").permitAll()
-            .antMatchers(HttpMethod.GET, "/business").permitAll()
+            // .antMatchers(HttpMethod.POST, "/create_order").authenticated()
+            // .antMatchers(HttpMethod.GET, "/get_all_order/*").authenticated()
+            // .antMatchers(HttpMethod.GET, "/business").authenticated()
             .antMatchers(HttpMethod.POST, "/create_customer").permitAll()
+            .antMatchers(HttpMethod.GET,"/get_all_customers").permitAll()
             .and()
             .csrf().disable() // CSRF protection is needed only for browser based attacks
             .formLogin().disable()
