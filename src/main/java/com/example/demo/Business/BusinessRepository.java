@@ -1,14 +1,16 @@
 package com.example.demo.Business;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+import java.util.List;
 
 @Repository
 public interface BusinessRepository extends JpaRepository<Business, Long>{
+    Optional<Business> findByUEN(String UEN);
 
-    @Query(value = "SELECT * FROM business WHERE sid = :sidSearch", nativeQuery = true)
-    List<Business> listBusinessbysid(@Param("sidSearch") Long sidSearch);
+    Boolean existsByUEN(String UEN);
+
+    List<Business> findByMid(Long mid);
 }

@@ -1,33 +1,48 @@
 package com.example.demo.Business;
-
-
-import java.util.List;
-import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.Valid;
-import org.springframework.web.bind.annotation.*;
-import jdk.jshell.spi.ExecutionControl.UserException;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import com.example.demo.Business.*;
+import java.util.List;
 
-
-@RestController
 @CrossOrigin
+@RestController
 public class BusinessController {
-    
-    private BusinessRepository businessRepository;
+    private BusinessService businessService;
 
     @Autowired
-    public BusinessController(BusinessRepository businessRepository){
-        this.businessRepository = businessRepository;
+    private BCryptPasswordEncoder encoder;
+
+    @Autowired
+    public BusinessController(BusinessService businessService) {
+        this.businessService = businessService;
     }
 
-    @GetMapping("/business")
-    public List<Business> getBusinesses() {
-        // return businesses.findAll();
-        Long l= Long.valueOf(103);
-        return businessRepository.listBusinessbysid(l);
+    @GetMapping(path = "/business", produces = "application/json")
+    public List<Business> getAllBusinesses() {
+        return businessService.getAllBusinesses();
     }
-}
+
+    @GetMapping(path = "/business/uen/{UEN}", produces = "application/json")
+    public Business getBusinessByUEN(@PathVariable String UEN) {
+        return businessService.getBusinessByUEN(UEN);
+    }
+
+    @GetMapping(path = "/business/mid/{mid}", produces = "application/json")
+    public List<Business> getBusinessByUEN(@PathVariable Long mid) {
+        return businessService.getBusinessesByMid(mid);
+    }
+
+    @PostMapping(value = "/business", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value=HttpStatus.OK)
+    public Business addBusiness(@Valid @RequestBody Business newBusiness) {
+        newBusiness.setAuthorities("ROLE_USER");
+        newBusiness.setPassword(encoder.encode(newBusiness.getPassword()));
+        return businessService.addBusiness(newBusiness);
+    }
+} 
