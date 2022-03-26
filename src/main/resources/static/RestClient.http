@@ -3,7 +3,7 @@
 
 ###
 
-GET http://localhost:8081/businesses
+GET http://localhost:8081/business
 Accept: application/json
 
 ###

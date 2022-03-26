@@ -7,12 +7,12 @@ import com.example.demo.Order.Order;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import java.util.Arrays;
-import java.util.Collection;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
+import com.example.demo.Order.Order;
+import com.example.demo.Mall.mall;
+import com.example.demo.waiting_time_history.Waiting_time_history;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Getter
