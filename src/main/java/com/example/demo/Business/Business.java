@@ -1,17 +1,19 @@
 package com.example.demo.Business;
 
 // import com.example.demo.Mall.Mall;
-import com.example.demo.Menu.Menu;
-import com.example.demo.Order.Order;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
+import java.util.List;
+import java.util.Arrays;
+import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import java.util.Arrays;
-import java.util.Collection;
+import com.example.demo.waiting_time_history.Waiting_time_history;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -87,7 +89,7 @@ public class Business implements UserDetails{
     @Override
     @JsonIgnore
     public String getUsername() {
-        return email;
+        return UEN;
     }
 
     // @OneToOne(mappedBy = "business",

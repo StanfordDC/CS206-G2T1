@@ -1,8 +1,7 @@
-package com.example.demo.Menu;
+package com.example.demo.Food;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.List;
-import com.example.demo.Order.Order_food;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -16,11 +15,8 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Table(name = "food", schema = "cs206")
-public class Food {
+public class Food{
     private  @Id @Column(name = "fid")@GeneratedValue (strategy = GenerationType.IDENTITY) Long fid;
-
-    @Column(name = "mid")
-    private Long mid;
 
     @NotNull(message = "Food name should not be null") 
     private String name;
@@ -30,4 +26,15 @@ public class Food {
 
     @Column(name = "availability")
     private boolean availability;
+
+    @Column(name = "bid")
+    private long bid;
+
+    @Column(name = "quantity")
+    private Integer quantity;
+
+    @Column(name = "image")
+    @Lob
+    private String image;
 }
+

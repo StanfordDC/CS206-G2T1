@@ -24,10 +24,12 @@ phone_no int not null
 
 create table food(
 fid bigint not null primary key,
+bid bigint not null,
 availability bit(1) not null,
-mid bigint not null not null,
 name varchar(255) not null,
-price float not null
+price float not null,
+quantity int not null,
+image blob not null
 );
 
 create table mall(
@@ -35,16 +37,14 @@ sid bigint not null primary key,
 name varchar(255) not null
  );
  
-create table menu(
-mid bigint not null primary key,
-bid bigint not null,
-price float not null
- );
- 
 create table order_food(
 ofid bigint not null primary key,
+oid bigint not null,
 fid bigint not null,
-quantity int
+name varchar(255) not null,
+price float not null,
+quantity int not null,
+image blob not null
  );
  
 create table orders(
