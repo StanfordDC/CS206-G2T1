@@ -9,20 +9,20 @@ Accept: application/json
 ###
 
 GET http://localhost:8081/get_all_order
-Authorization: Basic abc@gmail.com goodpassword
+Accept: application/json
 
 ###
 POST http://localhost:8081/create_order
 Content-Type: application/json
 
 {
-    "bid": "1",
-    "cid": "1",
-    "price": "10",
+    "bid": 1,
+    "cid": 1,
+    "price": 10.0,
     "date": "2016-01-25T21:34:55",
     "waiting_time": "30",
     "pax": 5,
-    "order_Status":1,
+    "order_status":1,
     "payment_status": 1
     
 }
@@ -37,8 +37,8 @@ Content-Type: application/json
     "password": "goodpassword",
     "card_no": "122222222",
     "card_name": "card",
-    "expiry_date": "2016-01-25T21:34:55",
-    "authorities": "ROLE_ADMIN"
+    "authorities": "ROLE_USER",
+    "expiry_date": "2016-01-25T21:34:55"
 }
 
 ###
