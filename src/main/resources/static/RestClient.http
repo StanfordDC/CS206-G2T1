@@ -35,7 +35,7 @@ Content-Type: application/json
     "password": "goodpassword",
     "card_no": "122222222",
     "card_name": "card",
-    "authorities": "Role_User",
+    "authorities": "ROLE_USER",
     "expiry_date": "2016-01-25T21:34:55"
 }
 

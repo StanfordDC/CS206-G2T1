@@ -32,7 +32,7 @@ public class CustomerController {
 
     @PostMapping(value = "/create_customer", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Customer createCustomer(@Valid @RequestBody Customer customer) {
-        // customer.setName("aaaaaa");
+        customer.setAuthorities("ROLE_USER");
         customer.setPassword(encoder.encode(customer.getPassword()));
         return customers.save(customer);
     }
