@@ -29,7 +29,8 @@ public class OrderController {
         this.orderRepository = orderRepository;
     }
 
-    @PostMapping(value = "/create_order")
+
+    @PostMapping(value = "/create_order", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Order createOrder(@RequestBody Order newOrder) {
         newOrder.setOrder_status(0);
         newOrder.setPayment_status(0);

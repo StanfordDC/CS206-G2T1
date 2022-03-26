@@ -5,7 +5,9 @@
 
 GET http://localhost:8081/businesses
 Accept: application/json
+
 ###
+
 GET http://localhost:8081/get_all_order
 Accept: application/json
 
@@ -41,3 +43,53 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8081/get_all_customers
+
+###
+
+GET http://localhost:8081/business
+Accept: application/json
+
+###
+
+GET http://localhost:8081/business/uen/tp123
+Accept: application/json
+
+###
+
+GET http://localhost:8081/business/mid/0
+Accept: application/json
+
+###
+
+POST http://localhost:8081/business
+content-type: application/json
+
+{
+    "uen": "123ab7",
+    "name": "dintaifung", 
+    "password": "goodpassword",
+    "contact_number": "9330",
+    "mid": 0,
+    "waiting_time": 0,
+    "website": "hello"
+}
+
+###
+
+POST http://localhost:8081/business
+content-type: application/json
+
+{
+
+    "UEN": "cs206", 
+    "name": "dintaifung", 
+    "password": "goodpassword",
+    "contact_number": "9330",
+    "mid": 22,
+    "waiting_time": 0,
+    "website": "hello",
+    "uen": "cs20677"
+
+}
+
+###
