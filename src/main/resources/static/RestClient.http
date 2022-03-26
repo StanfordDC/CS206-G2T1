@@ -65,15 +65,13 @@ POST http://localhost:8081/business
 content-type: application/json
 
 {
-    "bid": 20,
-    "UEN": "123ab7899d",
+    "uen": "123ab7",
     "name": "dintaifung", 
     "password": "goodpassword",
     "contact_number": "9330",
     "mid": 0,
     "waiting_time": 0,
-    "website": "hello",
-    "UEN": "123ab7899d"
+    "website": "hello"
 }
 
 ###
@@ -86,8 +84,11 @@ content-type: application/json
     "UEN": "cs206", 
     "name": "dintaifung", 
     "password": "goodpassword",
+    "contact_number": "9330",
     "mid": 22,
-    "waiting_time": 0
+    "waiting_time": 0,
+    "website": "hello",
+    "uen": "cs20677"
 
 }
 

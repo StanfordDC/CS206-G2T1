@@ -17,16 +17,11 @@ import lombok.*;
 @EqualsAndHashCode
 @Table(name = "business", schema = "cs206")
 public class Business {
-    // @Id
-    // @GeneratedValue(generator = "UUID")
-    // @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    // @Column(name = "bid")
-    // private UUID bid;
 
     @Id @Column(name = "bid") @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bid;
 
-    @NotNull(message = "Business UEN should not be null")
+    // @NotNull(message = "Business UEN should not be null")
     @Column(name = "uen")
     private String UEN;
 

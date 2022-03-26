@@ -1,8 +1,8 @@
 use cs206;
 
 create table business(
-bid BIGINT not null primary key,
-uen varchar(10) not null,
+bid BIGINT not null auto_increment primary key,
+uen varchar(10),
 name varchar(255) not null,
 password varchar(20) not null,
 phone_no int not null,
@@ -48,7 +48,7 @@ quantity int
  );
  
 create table orders(
-oid bigint not null primary key,
+oid bigint not null auto_increment primary key,
 bid bigint not null,
 cid bigint not null,
 odate datetime(6) not null,
