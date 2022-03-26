@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
 import java.util.List;
-import com.example.demo.Menu.Menu;
 import com.example.demo.Order.Order;
 import com.example.demo.Mall.mall;
 import com.example.demo.waiting_time_history.Waiting_time_history;
