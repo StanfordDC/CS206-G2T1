@@ -1,4 +1,4 @@
-# CS206-G2T1
+# Q-Now
 
 Created for SMU CS206 AY2022
 
