@@ -29,13 +29,13 @@ public class OrderController {
         this.orderRepository = orderRepository;
     }
 
-    @PostMapping(value = "/create_order", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createOrder(@RequestBody Order newOrder) {
+    @PostMapping(value = "/create_order")
+    public Order createOrder(@RequestBody Order newOrder) {
         newOrder.setOrder_status(0);
         newOrder.setPayment_status(0);
         newOrder.setPrice((float) 0.00);
         newOrder.setDate(LocalDateTime.now());
-        orderRepository.save(newOrder);
+        return orderRepository.save(newOrder);
     }
 
     @GetMapping(value = "/get_all_order", produces = MediaType.APPLICATION_JSON_VALUE)
