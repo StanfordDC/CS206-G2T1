@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Setter
 @ToString
 @AllArgsConstructor
-// @NoArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode
 @Table(name = "customers", schema = "cs206")
 public class Customer implements UserDetails{

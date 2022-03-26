@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -13,6 +14,9 @@ import java.util.List;
 @RestController
 public class BusinessController {
     private BusinessService businessService;
+
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     @Autowired
     public BusinessController(BusinessService businessService) {
@@ -37,6 +41,8 @@ public class BusinessController {
     @PostMapping(value = "/business", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value=HttpStatus.OK)
     public Business addBusiness(@Valid @RequestBody Business newBusiness) {
+        newBusiness.setAuthorities("ROLE_USER");
+        newBusiness.setPassword(encoder.encode(newBusiness.getPassword()));
         return businessService.addBusiness(newBusiness);
     }
 } 

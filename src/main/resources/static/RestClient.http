@@ -70,6 +70,7 @@ content-type: application/json
     "password": "goodpassword",
     "contact_number": "9330",
     "mid": 0,
+    "authorities": "ROLE_USER",
     "waiting_time": 0,
     "website": "hello"
 }
@@ -86,6 +87,7 @@ content-type: application/json
     "password": "goodpassword",
     "contact_number": "9330",
     "mid": 22,
+    "authorities": "ROLE_USER",
     "waiting_time": 0,
     "website": "hello",
     "uen": "cs20677"
