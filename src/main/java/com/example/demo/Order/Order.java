@@ -38,9 +38,8 @@ public class Order {
     @Column(name="odate")
     private LocalDateTime date; 
 
-    @NotNull(message = "waiting time should not be null")
     @Column(name = "cwaiting_time")
-    private String waiting_time;
+    private LocalDateTime waiting_time;
 
     @Column(name = "pax")
     private int pax;

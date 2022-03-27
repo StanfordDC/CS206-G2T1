@@ -15,6 +15,4 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query(value = "SELECT * FROM orders WHERE cid = :cidSearch", nativeQuery = true)
     List<Order> listOrderbycid(@Param("cidSearch") Long cidSearch);
-
-
 }
