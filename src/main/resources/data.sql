@@ -7,7 +7,10 @@ name varchar(255) not null,
 password varchar(20) not null,
 phone_no int not null,
 sid bigint not null,
-bwaiting_time int not null,
+no_of_2pax int,
+no_of_5pax int,
+bwaiting_time_2pax datetime,
+bwaiting_time_5pax datetime,
 website varchar(255)
 );
 
@@ -51,19 +54,21 @@ create table orders(
 oid bigint not null auto_increment primary key,
 bid bigint not null,
 cid bigint not null,
-odate datetime(6) not null,
+odate datetime,
 order_status int not null,
 pax int not null,
 payment_status int not null,
 total_price float not null,
-cwaiting_time varchar(7) not null
+cwaiting_time datetime
  );
  
 create table shop_tables(
-tid bigint not null primary key,
-availability bit(1) not null,
+tid bigint not null auto_increment primary key,
 bid bigint not null,
-type int not null
+availability bit(1),
+type int not null,
+twaiting_time datetime,
+FOREIGN KEY (bid) REFERENCES business(bid)
  );
  
 create table waiting_time_history(
