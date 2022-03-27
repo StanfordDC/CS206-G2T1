@@ -1,8 +1,14 @@
 package com.example.demo.Business;
 
+import com.example.demo.Table.Tables;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 // import com.example.demo.Mall.Mall;
-import com.example.demo.Menu.Menu;
-import com.example.demo.Order.Order;
+// import com.example.demo.Menu.Menu;
+// import com.example.demo.Order.Order;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -21,7 +27,7 @@ public class Business {
     @Id @Column(name = "bid") @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bid;
 
-    // @NotNull(message = "Business UEN should not be null")
+    @NotNull(message = "Business UEN should not be null")
     @Column(name = "uen")
     private String UEN;
 
@@ -31,7 +37,7 @@ public class Business {
     @NotNull(message = "Password should not be null")
     private String password;
 
-    // @NotNull(message = "Business contact number should not be null")
+    @NotNull(message = "Business contact number should not be null")
     @Column(name = "phone_no")
     private String contact_number;
 
@@ -39,9 +45,19 @@ public class Business {
     @Column(name = "sid")
     private long mid;
 
-    // @NotNull(message = "waiting time should not be null") //we generate
-    @Column(name = "bwaiting_time")
-    private int waiting_time;
+    @Column(name = "no_of_2pax")
+    private int no_of_2pax;
+
+    @Column(name = "no_of_5pax")
+    private int no_of_5pax;
+
+    @Column(name = "bwaiting_time_2pax")
+    @JsonIgnore
+    private LocalDateTime waiting_time_2pax;
+
+    @Column(name = "bwaiting_time_5pax")
+    @JsonIgnore
+    private LocalDateTime waiting_time_5pax;
 
     private String website;
 
@@ -57,33 +73,17 @@ public class Business {
     // cascade = CascadeType.ALL)
     // private Mall mall;
 
-    // @OneToMany(mappedBy = "business",
-    // cascade = CascadeType.ALL)
-    // private Table table; // list of tables?
+    @OneToMany(mappedBy = "business",
+    cascade = CascadeType.ALL)
+    private List<Tables> tableList; 
 
-    public Business(String UEN, String name, String password, long mid) {
+    public Business(String UEN, String name, String password, long mid, String contact_number) {
         this.UEN = UEN;
         this.name = name;
         this.password = password;
         this.mid = mid;
-        this.waiting_time = 0;
+        this.contact_number = contact_number;
+        this.waiting_time_2pax = java.time.LocalDateTime.now();
+        this.waiting_time_5pax = java.time.LocalDateTime.now();
     }
-
-    // public Business() {
-    //     this.UEN = "hello123";
-    // }
-
-    // public Business(@JsonProperty("UEN") String UEN, @JsonProperty("name") String name, @JsonProperty("contact_number") String contact_number, @JsonProperty("website") String website) {
-    //     this.UEN = UEN;
-    //     this.name = name;
-    //     this.contact_number = contact_number;
-    //     this.website = website;
-    // }
-
-    // // @NotNull(message = "Business contact number should not be null")
-    // @Column(name = "phone_no")
-    // private String contact_number;
-
-    // @NotNull(message = "Business opening hours should not be null")
-    // private String opening_hours;
 }

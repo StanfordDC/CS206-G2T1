@@ -1,5 +1,6 @@
 package com.example.demo.Business;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface BusinessService {
@@ -12,4 +13,6 @@ public interface BusinessService {
     Business getBusinessByUEN(String UEN) throws BusinessNotFoundException;
 
     Business addBusiness(Business business) throws BusinessAlreadyRegisteredException;
+
+    LocalDateTime getWaitingTime(Long bid, int noOfPax);
 }
