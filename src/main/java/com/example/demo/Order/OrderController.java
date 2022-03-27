@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.example.demo.Business.BusinessService;
 import com.example.demo.Food.Food;
 import com.example.demo.Order.*;
 
@@ -25,11 +26,13 @@ public class OrderController {
 
     private OrderRepository orderRepository;
     private OrderService orderService;
+    private BusinessService businessService;
 
     @Autowired
-    public OrderController(OrderRepository orderRepository, OrderService orderService) {
+    public OrderController(OrderRepository orderRepository, OrderService orderService, BusinessService businessService) {
         this.orderRepository = orderRepository;
         this.orderService = orderService;
+        this.businessService = businessService;
     }
 
     @PostMapping(value = "/create_order/{bid}/{cid}")
@@ -37,6 +40,18 @@ public class OrderController {
         orderService.createOrder(newOrder, bid, cid);
     }
 
+    @PostMapping(value = "/create_order", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Order createOrder(@RequestBody Order newOrder) {
+        long bid = newOrder.getBid();
+        newOrder.setOrder_status(0);
+        newOrder.setPayment_status(0);
+        newOrder.setPrice((float) 0.00);
+        newOrder.setDate(LocalDateTime.now());
+        LocalDateTime waiting_time = businessService.getWaitingTime(bid, newOrder.getPax());
+        newOrder.setWaiting_time(waiting_time);
+        return orderRepository.save(newOrder);
+    }
+  
     // order history - list of all orders made by customer
     @GetMapping(value = "/get_all_order/{cid}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Order> getOrderByCid(@PathVariable Long cid) {
