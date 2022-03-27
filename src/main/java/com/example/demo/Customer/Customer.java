@@ -107,17 +107,15 @@ public class Customer implements UserDetails{
         this.name = name;
     }
 
-    public Customer(String name,String email, String password, String authorities){
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.authorities = authorities;
-    }
+    // public Customer(String name,String email, String password, String authorities){
+    //     this.name = name;
+    //     this.email = email;
+    //     this.password = password;
+    // }
 
-    public Customer(){
-        this.name = "new";
-        this.email = "abs@gmail.com";
-        this.password = "password";
-        this.authorities = "ROLE_ADMIN";
-    }
+    // public Customer(){
+    //     this.name = "new";
+    //     this.email = "abs@gmail.com";
+    //     this.password = "password";
+    // }
 }

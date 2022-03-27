@@ -49,4 +49,25 @@ public class Order {
 
     @Column(name = "payment_status")
     private int payment_status;
+
+    // public void setOrder_status(int order_status) {
+    //     this.order_status = order_status;
+    // }
+
+    // public void setPayment_status(int payment_status) {
+    //     this.payment_status = payment_status;
+    // }
+
+    // public void setPrice(float price) {
+    //     this.price = price;
+    // }
+
+    // public void setDate(LocalDateTime date) {
+    //     this.date = date;
+    // }
+    // public void setWaiting_time(String waiting_time) {
+    //     this.waiting_time = waiting_time;
+    // }
+
+    
 }
