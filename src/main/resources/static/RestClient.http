@@ -3,7 +3,7 @@
 
 ###
 
-GET http://localhost:8081/businesses
+GET http://localhost:8081/business
 Accept: application/json
 
 ###
@@ -65,12 +65,14 @@ POST http://localhost:8081/business
 content-type: application/json
 
 {
-
-    "uen": "ps123", 
-    "name": "pasta express", 
+    "uen": "123ab7",
+    "name": "dintaifung", 
     "password": "goodpassword",
     "contact_number": "9330",
-    "mid": 0
-
+    "mid": 0,
+    "authorities": "ROLE_USER",
+    "waiting_time": 0,
+    "website": "hello"
 }
+
 

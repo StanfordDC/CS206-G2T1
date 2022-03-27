@@ -13,6 +13,16 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
+import java.util.List;
+import java.util.Arrays;
+import java.util.Collection;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import com.example.demo.waiting_time_history.Waiting_time_history;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Getter
@@ -22,7 +32,7 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Table(name = "business", schema = "cs206")
-public class Business {
+public class Business implements UserDetails{
 
     @Id @Column(name = "bid") @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bid;
@@ -33,6 +43,7 @@ public class Business {
 
     @NotNull(message = "Business name should not be null")
     private String name;
+
 
     @NotNull(message = "Password should not be null")
     private String password;
@@ -60,6 +71,44 @@ public class Business {
     private LocalDateTime waiting_time_5pax;
 
     private String website;
+
+    @NotNull(message = "Authorities should not be null")
+    // We define two roles/authorities: ROLE_USER or ROLE_ADMIN
+    private String authorities;
+
+    /* Return a collection of authorities (roles) granted to the user.
+    */
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Arrays.asList(new SimpleGrantedAuthority(authorities));
+    }
+
+    /*
+    The various is___Expired() methods return a boolean to indicate whether
+    or not the user’s account is enabled or expired.
+    */
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    @JsonIgnore
+    public String getUsername() {
+        return UEN;
+    }
 
     // @OneToOne(mappedBy = "business",
     // cascade = CascadeType.ALL)

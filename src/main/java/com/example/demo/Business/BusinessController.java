@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.Valid;
 
@@ -19,6 +20,7 @@ import java.util.List;
 public class BusinessController {
     private BusinessService businessService;
     private TableService tableService;
+    private BCryptPasswordEncoder encoder;
 
     @Autowired
     public BusinessController(BusinessService businessService, TableService tableService) {
@@ -44,6 +46,9 @@ public class BusinessController {
     @PostMapping(value = "/business", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value=HttpStatus.OK)
     public Business addBusiness(@Valid @RequestBody Business newBusiness) {
+        newBusiness.setAuthorities("ROLE_USER");
+        newBusiness.setPassword(encoder.encode(newBusiness.getPassword()));
+
         Business business = businessService.addBusiness(newBusiness);
         long bid = business.getBid();
         int noOf2Pax = 5;
