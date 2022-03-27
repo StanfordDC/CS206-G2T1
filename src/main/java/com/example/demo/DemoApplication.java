@@ -9,8 +9,11 @@ import org.springframework.context.ApplicationContext;
 @SpringBootApplication
 public class DemoApplication {
 
+	// @Autowired
+	// private static BusinessRepository br;
+
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(DemoApplication.class, args);
-		// BCryptPasswordEncoder encoder = ctx.getBean(BCryptPasswordEncoder.class);
+
 	}
 }
