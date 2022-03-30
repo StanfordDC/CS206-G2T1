@@ -39,18 +39,6 @@ public class OrderController {
     public void createOrder(@RequestBody Order newOrder, @PathVariable("bid") Long bid, @PathVariable("cid") Long cid) {
         orderService.createOrder(newOrder, bid, cid);
     }
-
-    @PostMapping(value = "/create_order", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Order createOrder(@RequestBody Order newOrder) {
-        long bid = newOrder.getBid();
-        newOrder.setOrder_status(0);
-        newOrder.setPayment_status(0);
-        newOrder.setPrice((float) 0.00);
-        newOrder.setDate(LocalDateTime.now());
-        LocalDateTime waiting_time = businessService.getWaitingTime(bid, newOrder.getPax());
-        newOrder.setWaiting_time(waiting_time);
-        return orderRepository.save(newOrder);
-    }
   
     // order history - list of all orders made by customer
     @GetMapping(value = "/get_all_order/{cid}", produces = MediaType.APPLICATION_JSON_VALUE)
