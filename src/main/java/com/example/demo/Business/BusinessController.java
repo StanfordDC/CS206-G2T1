@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import javax.validation.Valid;
 
@@ -20,12 +21,15 @@ import java.util.List;
 public class BusinessController {
     private BusinessService businessService;
     private TableService tableService;
+    @Autowired
     private BCryptPasswordEncoder encoder;
+    private BusinessRepository businesses;
 
     @Autowired
-    public BusinessController(BusinessService businessService, TableService tableService) {
+    public BusinessController(BusinessService businessService, TableService tableService, BusinessRepository businesses) {
         this.businessService = businessService;
         this.tableService = tableService;
+        this.businesses = businesses;
     }
 
     @GetMapping(path = "/business", produces = "application/json")
@@ -46,6 +50,11 @@ public class BusinessController {
     @PostMapping(value = "/business", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value=HttpStatus.OK)
     public Business addBusiness(@Valid @RequestBody Business newBusiness) {
+        Business checkUser = businesses.findByUEN(newBusiness.getUEN()).orElse(null);
+        if(checkUser != null){
+            throw new BusinessAlreadyRegisteredException(newBusiness.getUEN());
+        }
+
         newBusiness.setAuthorities("ROLE_USER");
         newBusiness.setPassword(encoder.encode(newBusiness.getPassword()));
 
@@ -64,5 +73,22 @@ public class BusinessController {
         }
 
         return business;
+    }
+
+    @GetMapping("/business/login/{UEN}/{password}")
+    public Business login(@PathVariable("UEN") String UEN, @PathVariable("password") String password) {
+        // checks if the email exists
+        Business user = businesses.findByUEN(UEN).orElse(null);
+
+        if (user == null) {
+            throw new UsernameNotFoundException(UEN);
+        }
+
+        // checks if the password keyed in matches existing password
+        if (!encoder.matches(password, user.getPassword())) {
+            throw new UsernameNotFoundException(UEN);
+        }
+
+        return user;
     }
 } 

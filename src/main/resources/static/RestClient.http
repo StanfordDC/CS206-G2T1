@@ -57,7 +57,6 @@ Accept: application/json
 ###
 
 GET http://localhost:8081/business/mid/0
-Accept: application/json
 
 
 ### 
@@ -76,3 +75,8 @@ content-type: application/json
 }
 
 
+###
+GET http://localhost:8081/users/login/abc@gmail.com/goodpassword
+
+###
+GET http://localhost:8081/business/login/123ab7/goodpassword
