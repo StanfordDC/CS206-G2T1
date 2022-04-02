@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import com.example.demo.Customer.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 @RestController
 @CrossOrigin
@@ -32,6 +33,10 @@ public class CustomerController {
 
     @PostMapping(value = "/create_customer", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Customer createCustomer(@Valid @RequestBody Customer customer) {
+        Customer checkUser = customers.findByEmail(customer.getEmail()).orElse(null);
+        if(checkUser != null){
+            throw new UserAlreadyExistsException(customer.getEmail());
+        }
         customer.setAuthorities("ROLE_USER");
         customer.setPassword(encoder.encode(customer.getPassword()));
         return customers.save(customer);
@@ -47,6 +52,24 @@ public class CustomerController {
     public Optional<Customer> getCustomerBycid(@PathVariable Long cid) {
         return customerService.getCustomer(cid);
     }
+
+    @GetMapping("/users/login/{userEmail}/{password}")
+    public Customer login(@PathVariable("userEmail") String userEmail, @PathVariable("password") String password) {
+        // checks if the email exists
+        Customer user = customers.findByEmail(userEmail).orElse(null);
+
+        if (user == null) {
+            throw new UsernameNotFoundException(userEmail);
+        }
+
+        // checks if the password keyed in matches existing password
+        if (!encoder.matches(password, user.getPassword())) {
+            throw new UsernameNotFoundException(userEmail);
+        }
+
+        return user;
+    }
+
 }
 
 
