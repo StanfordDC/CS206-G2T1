@@ -16,11 +16,11 @@ POST http://localhost:8081/create_order
 Content-Type: application/json
 
 {
+
     "bid": 1,
     "cid": 1,
     "price": 10.0,
     "date": "2016-01-25T21:34:55",
-    "waiting_time": "30",
     "pax": 5,
     "order_status":1,
     "payment_status": 1
@@ -59,8 +59,8 @@ Accept: application/json
 GET http://localhost:8081/business/mid/0
 Accept: application/json
 
-###
 
+### 
 POST http://localhost:8081/business
 content-type: application/json
 
@@ -75,23 +75,4 @@ content-type: application/json
     "website": "hello"
 }
 
-###
 
-POST http://localhost:8081/business
-content-type: application/json
-
-{
-
-    "UEN": "cs206", 
-    "name": "dintaifung", 
-    "password": "goodpassword",
-    "contact_number": "9330",
-    "mid": 22,
-    "authorities": "ROLE_USER",
-    "waiting_time": 0,
-    "website": "hello",
-    "uen": "cs20677"
-
-}
-
-###
