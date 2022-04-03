@@ -10,6 +10,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.Valid;
 
+import com.example.demo.Queue.OrdersInQueue;
+import com.example.demo.Queue.OrdersInQueueRepository;
+import com.example.demo.Queue.OrdersInQueueService;
 import com.example.demo.Table.TableService;
 import com.example.demo.Table.Tables;
 
@@ -21,16 +24,25 @@ public class BusinessController {
     private BusinessService businessService;
     private TableService tableService;
     private BCryptPasswordEncoder encoder;
+    private OrdersInQueueService ordersInQueueService;
+    private OrdersInQueueRepository ordersInQueueRepository;
 
     @Autowired
-    public BusinessController(BusinessService businessService, TableService tableService) {
+    public BusinessController(BusinessService businessService, TableService tableService, OrdersInQueueService ordersInQueueService, OrdersInQueueRepository ordersInQueueRepository) {
         this.businessService = businessService;
         this.tableService = tableService;
+        this.ordersInQueueService = ordersInQueueService;
+        this.ordersInQueueRepository = ordersInQueueRepository;
     }
 
     @GetMapping(path = "/business", produces = "application/json")
     public List<Business> getAllBusinesses() {
         return businessService.getAllBusinesses();
+    }
+
+    @GetMapping(path = "/business/bid/{bid}", produces = "application/json")
+    public Business getBusinessByBid(@PathVariable Long bid) {
+        return businessService.getBusinessById(bid);
     }
 
     @GetMapping(path = "/business/uen/{UEN}", produces = "application/json")
@@ -65,4 +77,24 @@ public class BusinessController {
 
         return business;
     }
+
+    // obtains list from queue where status = 0 is in queue and status = 1 is in store 
+    @GetMapping(path = "/business/bid/{bid}/status", produces = "application/json")
+    public List<OrdersInQueue> getOrdersInQueueByBidAndStatus(@PathVariable Long bid) {
+        return ordersInQueueService.getOrdersInQueueByBidAndStatus(bid, 0);
+    }
+
+    // changes customer status from in queue to in store
+    @PutMapping(path = "/business/bid/{bid}/oid/{oid}", produces = "application/json")
+    public void updateQueueToStore(@PathVariable Long bid, Long oid) {
+        ordersInQueueService.updateQueueToStore(bid, oid);
+    }
+
+    // removing customer from store, status = 2 is done
+    @DeleteMapping(path = "/business/bid/{bid}/oid/{oid}", produces = "application/json")
+    public void removeOrderFromQueue(@PathVariable Long bid, Long oid) {
+        ordersInQueueService.removeOrderFromQueue(bid, oid);
+    }
+
+
 } 

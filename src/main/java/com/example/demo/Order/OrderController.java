@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.example.demo.Business.BusinessService;
 import com.example.demo.Food.Food;
 import com.example.demo.Order.*;
+import com.example.demo.Queue.OrdersInQueueService;
 
 @RestController
 @CrossOrigin
@@ -27,12 +28,14 @@ public class OrderController {
     private OrderRepository orderRepository;
     private OrderService orderService;
     private BusinessService businessService;
+    private OrdersInQueueService ordersInQueueService;
 
     @Autowired
-    public OrderController(OrderRepository orderRepository, OrderService orderService, BusinessService businessService) {
+    public OrderController(OrderRepository orderRepository, OrderService orderService, BusinessService businessService, OrdersInQueueService ordersInQueueService) {
         this.orderRepository = orderRepository;
         this.orderService = orderService;
         this.businessService = businessService;
+        this.ordersInQueueService = ordersInQueueService;
     }
 
     @PostMapping(value = "/create_order/{bid}/{cid}")
@@ -49,7 +52,10 @@ public class OrderController {
         newOrder.setDate(LocalDateTime.now());
         LocalDateTime waiting_time = businessService.getWaitingTime(bid, newOrder.getPax());
         newOrder.setWaiting_time(waiting_time);
-        return orderRepository.save(newOrder);
+        Order order = orderRepository.save(newOrder);
+        ordersInQueueService.addOrderToQueue(bid, order);
+        System.out.println("im here+");
+        return order;
     }
   
     // order history - list of all orders made by customer

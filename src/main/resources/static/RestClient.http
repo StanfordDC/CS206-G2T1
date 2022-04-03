@@ -26,6 +26,16 @@ Content-Type: application/json
     "payment_status": 1
     
 }
+
+###
+GET http://localhost:8081/business/bid/1/status
+Content-Type: application/json
+
+
+###
+PUT http://localhost:8081/business/bid/1/oid/25
+Content-Type: application/json
+
 ###
 POST http://localhost:8081/create_customer
 Content-Type: application/json
@@ -51,7 +61,11 @@ Accept: application/json
 
 ###
 
-GET http://localhost:8081/business/uen/tp123
+GET http://localhost:8081/business/bid/1
+Accept: application/json
+###
+
+GET http://localhost:8081/business/uen/ps123
 Accept: application/json
 
 ###

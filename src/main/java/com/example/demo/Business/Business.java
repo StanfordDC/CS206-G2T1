@@ -1,5 +1,7 @@
 package com.example.demo.Business;
 
+import com.example.demo.Order.Order;
+import com.example.demo.Queue.OrdersInQueue;
 import com.example.demo.Table.Tables;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -32,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Table(name = "business", schema = "cs206")
-public class Business implements UserDetails{
+public class Business implements UserDetails {
 
     @Id @Column(name = "bid") @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bid;
@@ -71,6 +73,16 @@ public class Business implements UserDetails{
     private LocalDateTime waiting_time_5pax;
 
     private String website;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "business",
+    cascade = CascadeType.ALL)
+    private List<Tables> tableList; 
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "business",
+    cascade = CascadeType.ALL)
+    private List<OrdersInQueue> queueList;
 
     @NotNull(message = "Authorities should not be null")
     // We define two roles/authorities: ROLE_USER or ROLE_ADMIN
@@ -121,10 +133,6 @@ public class Business implements UserDetails{
     // @OneToMany(mappedBy = "business",
     // cascade = CascadeType.ALL)
     // private Mall mall;
-
-    @OneToMany(mappedBy = "business",
-    cascade = CascadeType.ALL)
-    private List<Tables> tableList; 
 
     public Business(String UEN, String name, String password, long mid, String contact_number) {
         this.UEN = UEN;
