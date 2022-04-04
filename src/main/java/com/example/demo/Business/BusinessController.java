@@ -79,20 +79,20 @@ public class BusinessController {
     }
 
     // obtains list from queue where status = 0 is in queue and status = 1 is in store 
-    @GetMapping(path = "/business/bid/{bid}/status", produces = "application/json")
-    public List<OrdersInQueue> getOrdersInQueueByBidAndStatus(@PathVariable Long bid) {
-        return ordersInQueueService.getOrdersInQueueByBidAndStatus(bid, 0);
+    @GetMapping(path = "/business/bid/{bid}/status/{status}", produces = "application/json")
+    public List<OrdersInQueue> getOrdersInQueueByBidAndStatus(@PathVariable Long bid, @PathVariable int status) {
+        return ordersInQueueService.getOrdersInQueueByBidAndStatus(bid, status);
     }
 
     // changes customer status from in queue to in store
     @PutMapping(path = "/business/bid/{bid}/oid/{oid}", produces = "application/json")
-    public void updateQueueToStore(@PathVariable Long bid, Long oid) {
+    public void updateQueueToStore(@PathVariable Long bid, @PathVariable Long oid) {
         ordersInQueueService.updateQueueToStore(bid, oid);
     }
 
     // removing customer from store, status = 2 is done
     @DeleteMapping(path = "/business/bid/{bid}/oid/{oid}", produces = "application/json")
-    public void removeOrderFromQueue(@PathVariable Long bid, Long oid) {
+    public void removeOrderFromQueue(@PathVariable Long bid, @PathVariable Long oid) {
         ordersInQueueService.removeOrderFromQueue(bid, oid);
     }
 

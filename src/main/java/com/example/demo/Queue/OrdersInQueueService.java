@@ -43,8 +43,8 @@ public class OrdersInQueueService {
     }
 
     public OrdersInQueue updateQueueToStore(Long bid, Long oid) throws BusinessNotFoundException {
+        System.out.println("bid: " + bid + ", oid: " + oid);
         OrdersInQueue order = queueRepository.findOrderByBidAndOid(bid, oid);
-        System.out.println(order);
         order.setStatus(1);
         return queueRepository.save(order);
     }
