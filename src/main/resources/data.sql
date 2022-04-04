@@ -78,3 +78,11 @@ pax int not null,
 type int not null,
 waiting_time varchar(7) not null
  );
+
+ create table orders_in_queue(
+     oqid bigint not null auto_increment primary key,
+     bid bigint not null,
+     oid bigint not null,
+     status int not null,
+     FOREIGN KEY (bid) REFERENCES business(bid)
+ );

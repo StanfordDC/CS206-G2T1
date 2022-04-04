@@ -44,7 +44,7 @@ public class Order {
     @Column(name = "pax")
     private int pax;
 
-    @Column(name = "order_status")
+    @Column(name = "order_status") // 0: in queue, 1: in store, 2: done
     private int order_status;
 
     @Column(name = "payment_status")

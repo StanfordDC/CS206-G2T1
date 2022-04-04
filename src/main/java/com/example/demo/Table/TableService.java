@@ -39,4 +39,22 @@ public class TableService {
             return tableRepository.save(newTable);
         }).orElseThrow(() -> new BusinessNotFoundException(bid));
     }
+
+    public Tables freeTable(Long tid) { // throws BusinessNotFoundException 
+        // return businessRepository.findById(bid).map(business -> {
+            Tables table = tableRepository.findByTid(tid);
+            table.setAvailability(true);
+            tableRepository.save(table);
+            return table;
+        // }).orElseThrow(() -> new BusinessNotFoundException(bid));
+    }
+
+    public Tables occupyTable(Long tid) { // throws BusinessNotFoundException
+        // return businessRepository.findById(bid).map(business -> {
+            Tables table = tableRepository.findByTid(tid);
+            table.setAvailability(false);
+            tableRepository.save(table);
+            return table;
+        // }).orElseThrow(() -> new BusinessNotFoundException(bid));
+    }
 }

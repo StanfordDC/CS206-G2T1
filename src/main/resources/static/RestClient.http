@@ -6,8 +6,9 @@
 GET http://localhost:8081/business
 Accept: application/json
 
-###
 
+
+### TESTING OF ORDERS
 GET http://localhost:8081/get_all_order
 Accept: application/json
 
@@ -26,7 +27,10 @@ Content-Type: application/json
     "payment_status": 1
     
 }
-###
+
+
+
+### TESTING OF CUSTOMER
 POST http://localhost:8081/create_customer
 Content-Type: application/json
 
@@ -44,20 +48,25 @@ Content-Type: application/json
 ###
 GET http://localhost:8081/get_all_customers
 
-###
 
+
+
+### TESTING OF BUSINESS
 GET http://localhost:8081/business
 Accept: application/json
 
 ###
 
-GET http://localhost:8081/business/uen/tp123
+GET http://localhost:8081/business/bid/1
+Accept: application/json
+###
+
+GET http://localhost:8081/business/uen/ps123
 Accept: application/json
 
 ###
 
 GET http://localhost:8081/business/mid/0
-
 
 ### 
 POST http://localhost:8081/business
@@ -65,7 +74,7 @@ content-type: application/json
 
 {
     "uen": "123ab7",
-    "name": "dintaifung", 
+    "name": "hongseng", 
     "password": "goodpassword",
     "contact_number": "9330",
     "mid": 0,
@@ -80,3 +89,38 @@ GET http://localhost:8081/users/login/abc@gmail.com/goodpassword
 
 ###
 GET http://localhost:8081/business/login/123ab7/goodpassword
+
+
+### TESTING OF ORDERS IN QUEUE
+GET http://localhost:8081/business/bid/1/status/0
+Content-Type: application/json
+
+###
+GET http://localhost:8081/business/bid/1/status/1
+Content-Type: application/json
+
+###
+PUT http://localhost:8081/business/bid/1/oid/26
+Content-Type: application/json
+
+###
+DELETE HTTP://localhost:8081/business/bid/1/oid/26
+Content-Type: application/json
+
+
+
+### TESTING OF TABLES
+GET http://localhost:8081/business/2/table
+Content-Type: application/json
+
+###
+GET http://localhost:8081/business/2/table/2
+Content-Type: application/json
+
+###
+PUT http://localhost:8081/business/table/2/free
+Content-Type: application/json
+
+###
+PUT http://localhost:8081/business/table/2/occupy
+Content-Type: application/json

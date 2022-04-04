@@ -41,13 +41,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
         .httpBasic()
             .and() //  "and()"" method allows us to continue configuring the parent
-        // .authorizeRequests()
-            // .antMatchers(HttpMethod.POST, "/create_order").authenticated()
-            // .antMatchers(HttpMethod.GET, "/get_all_order/*").authenticated()
-            // .antMatchers(HttpMethod.GET, "/business").authenticated()
-            // .antMatchers(HttpMethod.POST, "/create_customer").permitAll()
-            // .antMatchers(HttpMethod.GET,"/get_all_customers").authenticated()
-            // .and()
+        .authorizeRequests()
+            .antMatchers(HttpMethod.POST, "/create_order").permitAll()
+            .antMatchers(HttpMethod.GET, "/get_all_order/*").permitAll()
+            .antMatchers(HttpMethod.GET, "/business").permitAll()
+            .antMatchers(HttpMethod.POST, "/create_customer").permitAll()
+            .antMatchers(HttpMethod.GET,"/get_all_customers").permitAll()
+            .and()
             .csrf().disable() // CSRF protection is needed only for browser based attacks
             .formLogin().disable()
             .headers().disable(); // Disable the security headers, as we do not return HTML in our service

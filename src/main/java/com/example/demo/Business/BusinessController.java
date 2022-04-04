@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import javax.validation.Valid;
 
+import com.example.demo.Queue.OrdersInQueue;
+import com.example.demo.Queue.OrdersInQueueService;
 import com.example.demo.Table.TableService;
 import com.example.demo.Table.Tables;
 
@@ -21,20 +23,26 @@ import java.util.List;
 public class BusinessController {
     private BusinessService businessService;
     private TableService tableService;
-    @Autowired
     private BCryptPasswordEncoder encoder;
     private BusinessRepository businesses;
+    private OrdersInQueueService ordersInQueueService;
 
     @Autowired
-    public BusinessController(BusinessService businessService, TableService tableService, BusinessRepository businesses) {
+    public BusinessController(BusinessService businessService, TableService tableService, OrdersInQueueService ordersInQueueService, BusinessRepository businesses) {
         this.businessService = businessService;
         this.tableService = tableService;
+        this.ordersInQueueService = ordersInQueueService;
         this.businesses = businesses;
     }
 
     @GetMapping(path = "/business", produces = "application/json")
     public List<Business> getAllBusinesses() {
         return businessService.getAllBusinesses();
+    }
+
+    @GetMapping(path = "/business/bid/{bid}", produces = "application/json")
+    public Business getBusinessByBid(@PathVariable Long bid) {
+        return businessService.getBusinessById(bid);
     }
 
     @GetMapping(path = "/business/uen/{UEN}", produces = "application/json")
@@ -90,5 +98,29 @@ public class BusinessController {
         }
 
         return user;
+    }
+
+    /*
+    *** obtains list from queue where status = 0 is in queue and status = 1 is in store 
+    */
+    @GetMapping(path = "/business/bid/{bid}/status/{status}", produces = "application/json")
+    public List<OrdersInQueue> getOrdersInQueueByBidAndStatus(@PathVariable Long bid, @PathVariable int status) {
+        return ordersInQueueService.getOrdersInQueueByBidAndStatus(bid, status);
+    }
+
+    /*
+    *** changes customer status from in queue to in store
+    */
+    @PutMapping(path = "/business/bid/{bid}/oid/{oid}", produces = "application/json")
+    public void updateQueueToStore(@PathVariable Long bid, @PathVariable Long oid) {
+        ordersInQueueService.updateQueueToStore(bid, oid);
+    }
+
+    /*
+    *** removing customer from store, status = 2 is done
+    */
+    @DeleteMapping(path = "/business/bid/{bid}/oid/{oid}", produces = "application/json")
+    public void removeOrderFromQueue(@PathVariable Long bid, @PathVariable Long oid) {
+        ordersInQueueService.removeOrderFromQueue(bid, oid);
     }
 } 
