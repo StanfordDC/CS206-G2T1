@@ -1,8 +1,8 @@
 package com.example.demo.waiting_time_history;
+
 import javax.persistence.*;
-import javax.validation.constraints.*;
+
 import lombok.*;
-import com.example.demo.Business.Business;
 
 @Entity
 @Getter

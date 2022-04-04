@@ -1,7 +1,5 @@
 package com.example.demo.Queue;
 
-import java.time.LocalDateTime;
-
 import lombok.*;
 
 import javax.persistence.Column;

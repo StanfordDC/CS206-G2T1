@@ -7,7 +7,6 @@ import lombok.*;
 
 import com.example.demo.Business.Business;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Getter

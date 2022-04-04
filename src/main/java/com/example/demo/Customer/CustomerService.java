@@ -1,7 +1,5 @@
 package com.example.demo.Customer;
 
-import com.example.demo.Customer.*;
-import com.example.demo.Order.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.*;
 import org.springframework.stereotype.Service;

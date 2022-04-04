@@ -1,10 +1,9 @@
 package com.example.demo.Menu;
-import javax.persistence.*;
-import javax.validation.constraints.*;
 
-import com.example.demo.Business.Business;
-import java.util.List;
+import javax.persistence.*;
+
 import lombok.*;
+
 @Entity
 @Getter
 @Setter

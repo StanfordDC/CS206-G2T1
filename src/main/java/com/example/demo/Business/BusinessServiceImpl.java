@@ -15,14 +15,12 @@ import java.util.List;
 public class BusinessServiceImpl implements BusinessService{
     private BusinessRepository businessRepository;
     private TableService tableService;
-    private TableRepository tableRepository;
 
     @Autowired
     @Lazy
     public BusinessServiceImpl(BusinessRepository businessRepository, TableService tableService, TableRepository tableRepository) {
         this.businessRepository = businessRepository;
         this.tableService = tableService;
-        this.tableRepository = tableRepository;
     }
 
     @Override
@@ -73,6 +71,10 @@ public class BusinessServiceImpl implements BusinessService{
         }
     }
 
+
+    /*
+    *** get waiting time for tables of 2
+    */
     public LocalDateTime getWaitingTime2Pax(Long bid) {
         LocalDateTime current = java.time.LocalDateTime.now();
         LocalDateTime toReturn = current;
@@ -100,6 +102,9 @@ public class BusinessServiceImpl implements BusinessService{
         return toReturn;
     }
 
+    /*
+    *** get waiting time for tables of 5
+    */
     public LocalDateTime getWaitingTime5Pax(Long bid) {
         LocalDateTime current = java.time.LocalDateTime.now();
         LocalDateTime toReturn = current;

@@ -15,6 +15,4 @@ public interface BusinessService {
     Business addBusiness(Business business) throws BusinessAlreadyRegisteredException;
 
     LocalDateTime getWaitingTime(Long bid, int noOfPax);
-
-
 }

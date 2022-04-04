@@ -16,7 +16,5 @@ public interface OrdersInQueueRepository extends JpaRepository<OrdersInQueue, Lo
 
     @Query(value = "SELECT * FROM orders_in_queue WHERE bid = :bidSearch and status = :statusSearch", nativeQuery = true)
     List<OrdersInQueue> findAllOrdersInQueueByBidAndStatus(@Param("bidSearch") Long bidSearch, @Param("statusSearch") int statusSearch);
-
-    // @Query(value = "SELECT * FROM shop_tables WHERE bid = :bidSearch and type = :typeSearch", nativeQuery = true)
-    // List<OrdersInQueue> findTablesByBusinessIdAndType(@Param("bidSearch") Long bidSearch, @Param("typeSearch")  int typeSearch);
+    
 }

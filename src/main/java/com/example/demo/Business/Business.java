@@ -1,32 +1,22 @@
 package com.example.demo.Business;
 
-import com.example.demo.Order.Order;
 import com.example.demo.Queue.OrdersInQueue;
 import com.example.demo.Table.Tables;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-// import com.example.demo.Mall.Mall;
-// import com.example.demo.Menu.Menu;
-// import com.example.demo.Order.Order;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-import lombok.*;
-import java.util.List;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+
+import lombok.*;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import com.example.demo.waiting_time_history.Waiting_time_history;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Getter
@@ -47,7 +37,6 @@ public class Business implements UserDetails {
 
     @NotNull(message = "Business name should not be null")
     private String name;
-
 
     @NotNull(message = "Password should not be null")
     private String password;
@@ -90,6 +79,20 @@ public class Business implements UserDetails {
     // We define two roles/authorities: ROLE_USER or ROLE_ADMIN
     private String authorities;
 
+
+
+    public Business(String UEN, String name, String password, long mid, String contact_number) {
+        this.UEN = UEN;
+        this.name = name;
+        this.password = password;
+        this.mid = mid;
+        this.contact_number = contact_number;
+        this.waiting_time_2pax = java.time.LocalDateTime.now();
+        this.waiting_time_5pax = java.time.LocalDateTime.now();
+    }
+
+
+
     /* Return a collection of authorities (roles) granted to the user.
     */
     @Override
@@ -123,27 +126,5 @@ public class Business implements UserDetails {
     @JsonIgnore
     public String getUsername() {
         return UEN;
-    }
-
-    // @OneToOne(mappedBy = "business",
-    // cascade = CascadeType.ALL)
-    // private Menu menu;
-
-    // @OneToMany(mappedBy = "business",
-    // cascade = CascadeType.ALL)
-    // private Order orders;
-
-    // @OneToMany(mappedBy = "business",
-    // cascade = CascadeType.ALL)
-    // private Mall mall;
-
-    public Business(String UEN, String name, String password, long mid, String contact_number) {
-        this.UEN = UEN;
-        this.name = name;
-        this.password = password;
-        this.mid = mid;
-        this.contact_number = contact_number;
-        this.waiting_time_2pax = java.time.LocalDateTime.now();
-        this.waiting_time_5pax = java.time.LocalDateTime.now();
     }
 }

@@ -1,19 +1,9 @@
 package com.example.demo.Order;
-import javax.persistence.*;
-import javax.validation.constraints.*;
 
-import com.example.demo.Business.Business;
-import com.example.demo.Customer.Customer;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import java.util.List;
-import lombok.*;
-
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import javax.persistence.*;
+
+import lombok.*;
 
 @Entity
 @Getter
@@ -50,24 +40,4 @@ public class Order {
     @Column(name = "payment_status")
     private int payment_status;
 
-    // public void setOrder_status(int order_status) {
-    //     this.order_status = order_status;
-    // }
-
-    // public void setPayment_status(int payment_status) {
-    //     this.payment_status = payment_status;
-    // }
-
-    // public void setPrice(float price) {
-    //     this.price = price;
-    // }
-
-    // public void setDate(LocalDateTime date) {
-    //     this.date = date;
-    // }
-    // public void setWaiting_time(String waiting_time) {
-    //     this.waiting_time = waiting_time;
-    // }
-
-    
 }

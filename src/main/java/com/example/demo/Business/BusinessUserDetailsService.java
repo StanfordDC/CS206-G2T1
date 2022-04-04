@@ -10,8 +10,6 @@ public class BusinessUserDetailsService implements UserDetailsService{
     
     private BusinessRepository business;
  
-   
-
     public BusinessUserDetailsService(BusinessRepository business) {
         this.business = business;
     }

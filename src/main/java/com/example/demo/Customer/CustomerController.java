@@ -1,25 +1,20 @@
 package com.example.demo.Customer;
 
-
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.*;
-import jdk.jshell.spi.ExecutionControl.UserException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import com.example.demo.Customer.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 @RestController
 @CrossOrigin
 public class CustomerController {
-
-    
     private CustomerRepository customers;
     @Autowired
     private CustomerService customerService;
@@ -41,7 +36,6 @@ public class CustomerController {
         customer.setPassword(encoder.encode(customer.getPassword()));
         return customers.save(customer);
     }
-
 
     @GetMapping(value = "/get_all_customers", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Customer> getAllCustomers() {
@@ -69,7 +63,6 @@ public class CustomerController {
 
         return user;
     }
-
 }
 
 
