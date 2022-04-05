@@ -1,24 +1,16 @@
 package com.example.demo.Order;
 
-import java.sql.JDBCType;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
 
-import javax.validation.Valid;
 import org.springframework.web.bind.annotation.*;
-import jdk.jshell.spi.ExecutionControl.UserException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.example.demo.Business.BusinessService;
-import com.example.demo.Food.Food;
-import com.example.demo.Order.*;
+import com.example.demo.Queue.OrdersInQueueService;
 
 @RestController
 @CrossOrigin
@@ -27,17 +19,34 @@ public class OrderController {
     private OrderRepository orderRepository;
     private OrderService orderService;
     private BusinessService businessService;
+    private OrdersInQueueService ordersInQueueService;
 
     @Autowired
-    public OrderController(OrderRepository orderRepository, OrderService orderService, BusinessService businessService) {
+    public OrderController(OrderRepository orderRepository, OrderService orderService, BusinessService businessService, OrdersInQueueService ordersInQueueService) {
         this.orderRepository = orderRepository;
         this.orderService = orderService;
         this.businessService = businessService;
+        this.ordersInQueueService = ordersInQueueService;
     }
 
     @PostMapping(value = "/create_order/{bid}/{cid}")
     public void createOrder(@RequestBody Order newOrder, @PathVariable("bid") Long bid, @PathVariable("cid") Long cid) {
         orderService.createOrder(newOrder, bid, cid);
+    }
+
+    @PostMapping(value = "/create_order", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Order createOrder(@RequestBody Order newOrder) {
+        long bid = newOrder.getBid();
+        newOrder.setOrder_status(0);
+        newOrder.setPayment_status(0);
+        newOrder.setPrice((float) 0.00);
+        newOrder.setDate(LocalDateTime.now());
+        LocalDateTime waiting_time = businessService.getWaitingTime(bid, newOrder.getPax());
+        newOrder.setWaiting_time(waiting_time);
+        Order order = orderRepository.save(newOrder);
+        ordersInQueueService.addOrderToQueue(bid, order);
+        System.out.println("im here+");
+        return order;
     }
   
     // order history - list of all orders made by customer

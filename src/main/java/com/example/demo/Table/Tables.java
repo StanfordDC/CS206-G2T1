@@ -6,6 +6,7 @@ import javax.validation.constraints.*;
 import lombok.*;
 
 import com.example.demo.Business.Business;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Getter
@@ -33,6 +34,7 @@ public class Tables {
     @Column(name = "bid", nullable = false)
     private Long bid;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "bid", insertable=false, updatable=false)
     private Business business;

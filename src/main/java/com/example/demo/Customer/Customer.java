@@ -3,20 +3,14 @@ package com.example.demo.Customer;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
-import com.example.demo.Order.Order;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import java.util.List;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 import java.time.LocalDate;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
