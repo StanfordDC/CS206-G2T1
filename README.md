@@ -29,8 +29,9 @@ Created for SMU CS206 AY2022
 ## Running the application
 
 ##For Windows:
-
-
+1. Navigate to `CS206-G2T1` folder
+2. Ensure that MySQL service is running, and that all application properties are set correctly
+3. In the terminal, start the Spring Boot application, run `mvn spring-boot:run`
 
 ##For macOS:
 1. Navigate to `CS206-G2T1` folder
