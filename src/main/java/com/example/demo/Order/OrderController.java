@@ -29,24 +29,14 @@ public class OrderController {
         this.ordersInQueueService = ordersInQueueService;
     }
 
+    // @PostMapping(value = "/create_order/{bid}/{cid}")
+    // public void createOrder(@RequestBody Order newOrder, @PathVariable("bid") Long bid, @PathVariable("cid") Long cid) {
+    //     orderService.createOrder(newOrder, bid, cid);
+    // }
+
     @PostMapping(value = "/create_order/{bid}/{cid}")
     public void createOrder(@RequestBody Order newOrder, @PathVariable("bid") Long bid, @PathVariable("cid") Long cid) {
         orderService.createOrder(newOrder, bid, cid);
-    }
-
-    @PostMapping(value = "/create_order", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Order createOrder(@RequestBody Order newOrder) {
-        long bid = newOrder.getBid();
-        newOrder.setOrder_status(0);
-        newOrder.setPayment_status(0);
-        newOrder.setPrice((float) 0.00);
-        newOrder.setDate(LocalDateTime.now());
-        LocalDateTime waiting_time = businessService.getWaitingTime(bid, newOrder.getPax());
-        newOrder.setWaiting_time(waiting_time);
-        Order order = orderRepository.save(newOrder);
-        ordersInQueueService.addOrderToQueue(bid, order);
-        System.out.println("im here+");
-        return order;
     }
   
     // order history - list of all orders made by customer

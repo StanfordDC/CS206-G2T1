@@ -3,7 +3,9 @@ package com.example.demo.Order;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.example.demo.Business.BusinessService;
 import com.example.demo.Food.FoodService;
+import com.example.demo.Queue.OrdersInQueueService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +18,15 @@ public class OrderService {
     private OrderRepository orderRepository;
     private Order_FoodService order_FoodService;
     private FoodService foodService;
+    private BusinessService businessService;
+    private OrdersInQueueService ordersInQueueService;
 
     @Autowired
-    public OrderService(Order_FoodService order_FoodService, FoodService foodService) {
+    public OrderService(Order_FoodService order_FoodService, FoodService foodService, BusinessService businessService, OrdersInQueueService ordersInQueueService) {
         this.order_FoodService = order_FoodService;
         this.foodService = foodService;
+        this.businessService = businessService;
+        this.ordersInQueueService = ordersInQueueService;
     }
 
     public void createOrder (Order newOrder, Long bid, Long cid){
@@ -30,6 +36,9 @@ public class OrderService {
         newOrder.setPayment_status(0);
         newOrder.setPrice((float) 0.00);
         newOrder.setDate(LocalDateTime.now());
+        LocalDateTime waiting_time = businessService.getWaitingTime(bid, newOrder.getPax());
+        newOrder.setWaiting_time(waiting_time);
+        ordersInQueueService.addOrderToQueue(bid, newOrder);
         orderRepository.save(newOrder);
     }
 
