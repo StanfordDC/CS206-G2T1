@@ -39,7 +39,7 @@ public class Order {
     private LocalDateTime date; 
 
     @Column(name = "cwaiting_time")
-    private LocalDateTime waiting_time;
+    private String waiting_time;
 
     @Column(name = "pax")
     private int pax;
