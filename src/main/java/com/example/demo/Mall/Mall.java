@@ -12,7 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Table(name = "mall", schema = "cs206")
-public class mall {
+public class Mall {
     private @Id @Column(name = "sid") @GeneratedValue(strategy = GenerationType.IDENTITY) Long sid;
 
     @NotNull(message = "Mall name should not be null")
