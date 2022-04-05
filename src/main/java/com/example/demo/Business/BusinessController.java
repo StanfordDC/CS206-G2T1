@@ -28,11 +28,12 @@ public class BusinessController {
     private OrdersInQueueService ordersInQueueService;
 
     @Autowired
-    public BusinessController(BusinessService businessService, TableService tableService, OrdersInQueueService ordersInQueueService, BusinessRepository businesses) {
+    public BusinessController(BusinessService businessService, TableService tableService, OrdersInQueueService ordersInQueueService, BusinessRepository businesses,BCryptPasswordEncoder encoder) {
         this.businessService = businessService;
         this.tableService = tableService;
         this.ordersInQueueService = ordersInQueueService;
         this.businesses = businesses;
+        this.encoder = encoder;
     }
 
     @GetMapping(path = "/business", produces = "application/json")
@@ -64,7 +65,8 @@ public class BusinessController {
         }
 
         newBusiness.setAuthorities("ROLE_USER");
-        newBusiness.setPassword(encoder.encode(newBusiness.getPassword()));
+        String encodedPassword = encoder.encode(newBusiness.getPassword());
+        newBusiness.setPassword(encodedPassword);
 
         Business business = businessService.addBusiness(newBusiness);
         long bid = business.getBid();

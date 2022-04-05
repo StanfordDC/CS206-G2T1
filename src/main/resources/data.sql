@@ -4,14 +4,15 @@ create table business(
 bid BIGINT not null auto_increment primary key,
 uen varchar(10),
 name varchar(255) not null,
-password varchar(20) not null,
+password char(60) not null,
 phone_no int not null,
 sid bigint not null,
 no_of_2pax int,
 no_of_5pax int,
 bwaiting_time_2pax datetime,
 bwaiting_time_5pax datetime,
-website varchar(255)
+website varchar(255),
+authorities varchar(100) not null
 );
 
 create table customers(
