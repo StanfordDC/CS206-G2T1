@@ -29,7 +29,11 @@ public class OrderService {
         this.ordersInQueueService = ordersInQueueService;
     }
 
-    public void createOrder (Order newOrder, Long bid, Long cid){
+    public Order getOrderByOid(Long oid) {
+        return orderRepository.getOrder(oid);
+    }
+
+    public Order createOrder (Order newOrder, Long bid, Long cid){
         newOrder.setBid(bid);
         newOrder.setCid(cid);
         newOrder.setOrder_status(0);
@@ -38,8 +42,9 @@ public class OrderService {
         newOrder.setDate(LocalDateTime.now());
         LocalDateTime waiting_time = businessService.getWaitingTime(bid, newOrder.getPax());
         newOrder.setWaiting_time(waiting_time);
-        ordersInQueueService.addOrderToQueue(bid, newOrder);
-        orderRepository.save(newOrder);
+        Order order = orderRepository.save(newOrder);
+        ordersInQueueService.addOrderToQueue(bid, order);
+        return order;
     }
 
     public void submitOrder (List <Order_Food> order_FoodList, String price, Long oid){
