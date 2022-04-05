@@ -33,11 +33,16 @@ public class OrdersInQueueService {
         return queueRepository.findAllOrdersInQueueByBidAndStatus(bid, status);
     }
 
+    public List<OrdersInQueue> getOrdersInQueueByBidAndStatusAndType(Long bid, int status, int type) {
+        return queueRepository.findAllOrdersInQueueByBidAndStatusAndType(bid, status, type);
+    }
+
     public OrdersInQueue addOrderToQueue(Long bid, Order newOrder) throws BusinessNotFoundException {
         return businessRepository.findById(bid).map(business -> {
             OrdersInQueue order = new OrdersInQueue(newOrder.getOid());
             order.setBusiness(business);
             order.setBid(bid);
+            order.setType(newOrder.getPax());
             return queueRepository.save(order);
         }).orElseThrow(() -> new BusinessNotFoundException(bid));
     }

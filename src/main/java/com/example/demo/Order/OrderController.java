@@ -35,8 +35,8 @@ public class OrderController {
     // }
 
     @PostMapping(value = "/create_order/{bid}/{cid}")
-    public void createOrder(@RequestBody Order newOrder, @PathVariable("bid") Long bid, @PathVariable("cid") Long cid) {
-        orderService.createOrder(newOrder, bid, cid);
+    public Order createOrder(@RequestBody Order newOrder, @PathVariable("bid") Long bid, @PathVariable("cid") Long cid) {
+        return orderService.createOrder(newOrder, bid, cid);
     }
   
     // order history - list of all orders made by customer

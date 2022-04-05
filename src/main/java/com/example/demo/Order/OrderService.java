@@ -36,7 +36,7 @@ public class OrderService {
     public Order createOrder (Order newOrder, Long bid, Long cid){
         newOrder.setBid(bid);
         newOrder.setCid(cid);
-        newOrder.setOrder_status(0);
+        newOrder.setOrder_status(1);
         newOrder.setPayment_status(0);
         newOrder.setPrice((float) 0.00);
         newOrder.setDate(LocalDateTime.now());

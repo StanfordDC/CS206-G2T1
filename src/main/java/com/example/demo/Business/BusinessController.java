@@ -16,6 +16,7 @@ import com.example.demo.Queue.OrdersInQueueService;
 import com.example.demo.Table.TableService;
 import com.example.demo.Table.Tables;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @CrossOrigin
@@ -68,6 +69,9 @@ public class BusinessController {
         String encodedPassword = encoder.encode(newBusiness.getPassword());
         newBusiness.setPassword(encodedPassword);
 
+        LocalDateTime current = java.time.LocalDateTime.now();
+        newBusiness.setWaiting_time_2pax(current);
+        newBusiness.setWaiting_time_5pax(current);
         Business business = businessService.addBusiness(newBusiness);
         long bid = business.getBid();
         int noOf2Pax = 5;
@@ -124,5 +128,29 @@ public class BusinessController {
     @DeleteMapping(path = "/business/bid/{bid}/oid/{oid}", produces = "application/json")
     public void removeOrderFromQueue(@PathVariable Long bid, @PathVariable Long oid) {
         ordersInQueueService.removeOrderFromQueue(bid, oid);
+    }
+
+    /*
+    *** get waiting time
+    */
+    @GetMapping(path = "/business/{bid}/type/{type}/waiting_time", produces = "application/json")
+    public LocalDateTime getWaitingTime(@PathVariable Long bid, @PathVariable int type) {
+        Business business = businessService.getBusinessById(bid);
+        if (type == 2) {
+            return business.getWaiting_time_2pax();
+        } else if (type == 5) {
+            return business.getWaiting_time_5pax();
+        }
+        return null;
+    }
+
+    @PutMapping(path = "/business/bid/{bid}/type/{type}/add_time/{minutes}", produces = "application/json")
+    public LocalDateTime addWaitingTime(@PathVariable Long bid, @PathVariable int type, @PathVariable int minutes) {
+        if (type == 2) {
+            return businessService.addWaitingTime2Pax(bid, minutes);
+        } else if (type == 5) {
+            return businessService.addWaitingTime5Pax(bid, minutes);
+        }
+        return null;
     }
 } 

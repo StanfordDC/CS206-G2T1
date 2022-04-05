@@ -9,11 +9,11 @@ Accept: application/json
 
 
 ### TESTING OF ORDERS
-GET http://localhost:8081/get_all_order
+GET http://localhost:8081/get_all_order_business/1
 Accept: application/json
 
 ###
-POST http://localhost:8081/create_order
+POST http://localhost:8081/create_order/1/1
 Content-Type: application/json
 
 {
@@ -50,7 +50,6 @@ GET http://localhost:8081/get_all_customers
 
 
 
-
 ### TESTING OF BUSINESS
 GET http://localhost:8081/business
 Accept: application/json
@@ -73,8 +72,8 @@ POST http://localhost:8081/business
 content-type: application/json
 
 {
-    "uen": "123ab7",
-    "name": "hongseng", 
+    "uen": "123hs7",
+    "name": "hong seng", 
     "password": "goodpassword",
     "contact_number": "9330",
     "mid": 0,
@@ -123,4 +122,16 @@ Content-Type: application/json
 
 ###
 PUT http://localhost:8081/business/table/2/occupy
+Content-Type: application/json
+
+### TESTING WAITING TIME
+GET http://localhost:8081/business/1/type/5/waiting_time
+Content-Type: application/json
+
+###
+GET http://localhost:8081/get_all_order_business/1
+Accept: application/json
+
+###
+PUT http://localhost:8081/business/bid/1/type/5/add_time/5
 Content-Type: application/json

@@ -85,5 +85,6 @@ waiting_time varchar(7) not null
      bid bigint not null,
      oid bigint not null,
      status int not null,
+     type int not null,
      FOREIGN KEY (bid) REFERENCES business(bid)
  );

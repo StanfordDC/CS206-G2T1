@@ -34,6 +34,9 @@ public class OrdersInQueue {
     @NotNull(message = "Order status should not be null")
     private int status;
 
+    @NotNull(message = "Type should not be null")
+    private int type;
+
     @NotNull(message = "Business Id should not be null")
     @Column(name = "bid", nullable = false)
     private Long bid;
